@@ -1,0 +1,8 @@
+# C++ Build & Temporary Files
+*.exe
+*.o
+*.obj
+*.out
+
+# Secret GDD Millennium Theme Override (Hidden Easter Egg)
+gdd_secret*.json

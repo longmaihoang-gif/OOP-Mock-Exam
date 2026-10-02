@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Hệ Thống Thi Thử Trắc Nghiệm C++ OOP</title>
+    <link rel="stylesheet" href="MockExam.css?v=3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars-bg"></div>
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="navbar">
+        <div class="brand">
+            <div class="brand-logo" id="brand-logo">💻</div>
+            <div class="brand-text">
+                <h1 id="brand-title">HỆ THỐNG THI THỬ TRẮC NGHIỆM C++ OOP</h1>
+                <span class="subtext" id="brand-subtext" style="display: none;"></span>
+            </div>
+        </div>
+        <div class="nav-controls">
+            <button id="btn-show-history" class="btn-secondary" title="Xem lịch sử làm bài">
+                <span id="history-btn-text">📜 Lịch Sử Thi</span>
+            </button>
+            <button id="btn-import-csv" class="btn-secondary" title="Nạp file CSV ngân hàng đề khác">
+                📂 Nạp File CSV
+            </button>
+            <input type="file" id="csv-file-input" accept=".csv" style="display: none;">
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="container">
+        
+        <!-- ============================================== -->
+        <!-- MÀN HÌNH 1: SẢNH CHỜ CHỌN CHẾ ĐỘ (LOBBY SCREEN) -->
+        <!-- ============================================== -->
+        <section id="lobby-screen" class="view-card active">
+            <div class="lobby-header">
+                <h2 id="lobby-heading">CHỌN CHẾ ĐỘ THI THỬ</h2>
+                <p id="lobby-desc">Vui lòng chọn chế độ làm bài phù hợp để bắt đầu luyện tập hoặc kiểm tra kiến thức!</p>
+            </div>
+
+            <div class="mode-grid">
+                <!-- Chế độ 1: Học tập / Luyện tập -->
+                <div class="mode-card" id="card-mode-study">
+                    <div class="mode-badge badge-green">Không Giới Hạn</div>
+                    <div class="mode-icon">📖</div>
+                    <h3>CHẾ ĐỘ HỌC TẬP</h3>
+                    <p class="mode-desc">Tự do làm bài không giới hạn thời gian. Làm hết toàn bộ ngân hàng câu hỏi. Biết kết quả đúng/sai và xem giải thích cạm bẫy ngay lập tức sau mỗi câu!</p>
+                    <ul class="mode-perks">
+                        <li>✔️ Không áp lực thời gian</li>
+                        <li>✔️ Hiện giải thích chi tiết tại chỗ</li>
+                        <li>✔️ Ôn kỹ từng ngóc ngách của lý thuyết</li>
+                    </ul>
+                    <button class="btn-primary btn-start-study">BẮT ĐẦU ÔN LUYỆN</button>
+                    <button class="btn-secondary btn-retry-mistakes" id="btn-retry-mistakes" style="margin-top: 0.8rem; width: 100%;">
+                        🔥 LÀM LẠI CÂU SAI <span id="mistakes-count-badge" style="font-weight: 700; margin-left: 0.3rem;">(0)</span>
+                    </button>
+                </div>
+
+                <!-- Chế độ 2: Phòng thi thật -->
+                <div class="mode-card featured" id="card-mode-exam">
+                    <div class="mode-badge badge-orange">Mô Phỏng Phòng Thi</div>
+                    <div class="mode-icon">⏱️</div>
+                    <h3>CHẾ ĐỘ THI THỬ</h3>
+                    <p class="mode-desc">Mô phỏng áp lực phòng thi thực tế với đồng hồ đếm ngược. Kết quả và giải thích chỉ được công bố sau khi nộp bài!</p>
+                    
+                    <div class="exam-config">
+                        <div class="config-row">
+                            <label for="exam-question-count">Số lượng câu thi: <span class="max-badge" id="max-q-badge">(Tối đa: 5)</span></label>
+                            <input type="number" id="exam-question-count" min="1" max="5" value="5" class="input-number" placeholder="Số câu...">
+                        </div>
+                        <div class="config-row">
+                            <label for="exam-time-limit">Thời gian (Phút):</label>
+                            <input type="number" id="exam-time-limit" min="1" max="180" value="10" class="input-number" placeholder="Số phút...">
+                        </div>
+                        <div class="config-row checkbox-row">
+                            <label class="toggle-container">
+                                <input type="checkbox" id="exam-strict-forward" checked>
+                                <span class="toggle-slider"></span>
+                                <span class="toggle-label">Thi 1 chiều: <strong>Chỉ tiến, chọn xong không quay lại!</strong></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary btn-start-exam">VÀO PHÒNG THI</button>
+                </div>
+            </div>
+
+            <div class="loaded-status" id="loaded-status-text">
+                Đang sẵn sàng với <strong>5 câu hỏi</strong> mặc định từ buổi học hôm nay.
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- MÀN HÌNH 2: PHÒNG THI CHIẾN ĐẤU (EXAM SCREEN)   -->
+        <!-- ============================================== -->
+        <section id="exam-screen" class="view-card hidden">
+            <!-- Header thông số trận đấu -->
+            <div class="arena-stats">
+                <div class="stat-left">
+                    <span class="mode-pill" id="current-mode-pill">STUDY MODE</span>
+                    <span class="category-pill" id="question-topic-pill">Constructor</span>
+                    <span class="difficulty-pill" id="question-diff-pill">Easy</span>
+                    <span class="format-pill" id="question-format-pill">💻 CODE</span>
+                    <span class="type-pill" id="question-type-pill">Output</span>
+                </div>
+                <div class="stat-center">
+                    <div class="progress-info">
+                        Câu <strong id="current-q-index">1</strong> / <span id="total-q-count">5</span>
+                    </div>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar-fill" id="progress-bar-fill" style="width: 20%;"></div>
+                    </div>
+                </div>
+                <div class="stat-right">
+                    <div class="timer-box" id="timer-box">
+                        <span class="timer-icon">⏳</span>
+                        <span class="timer-digits" id="timer-display">10:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Khung câu hỏi -->
+            <div class="question-container">
+                <h3 class="question-text" id="question-text">
+                    Đang nạp câu hỏi...
+                </h3>
+
+                <!-- Khung code C++ (nếu có) -->
+                <div class="code-wrapper" id="code-wrapper">
+                    <div class="code-header">
+                        <span class="code-dot dot-red"></span>
+                        <span class="code-dot dot-yellow"></span>
+                        <span class="code-dot dot-green"></span>
+                        <span class="code-filename" id="code-filename">q1.cpp</span>
+                    </div>
+                    <pre class="code-content"><code id="code-block">// Đang tải code...</code></pre>
+                </div>
+
+                <!-- Danh sách các lựa chọn A, B, C, D, E -->
+                <div class="options-grid" id="options-grid">
+                    <!-- Javascript sẽ render động 3-5 đáp án ở đây -->
+                </div>
+
+                <!-- Khung giải thích bóc mẽ cạm bẫy (hiện ngay trong Study Mode) -->
+                <div class="explanation-box hidden" id="explanation-box">
+                    <div class="exp-title">
+                        <span id="exp-icon">💡</span>
+                        <h4 id="exp-heading">BÍ KÍP GIẢI MÃ CẠM BẪY</h4>
+                    </div>
+                    <p class="exp-content" id="exp-content">
+                        Lời giải thích chi tiết sẽ xuất hiện ở đây.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Thanh điều khiển chân trang -->
+            <div class="arena-footer">
+                <button id="btn-quit-study" class="btn-secondary" title="Dừng học và về sảnh chờ">🚪 Thoát Về Sảnh</button>
+                <button id="btn-prev-question" class="btn-secondary hidden">⬅️ Câu Trước</button>
+                <div class="footer-middle-spacer"></div>
+                <button id="btn-next-question" class="btn-primary">Câu Tiếp Theo ➡️</button>
+                <button id="btn-finish-exam" class="btn-danger hidden">Nộp Bài & Kết Thúc 🏁</button>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- MÀN HÌNH 3: BẢNG CHIẾN TÍCH TỔNG KẾT (RESULT)    -->
+        <!-- ============================================== -->
+        <section id="result-screen" class="view-card hidden">
+            <div class="result-header">
+                <div class="trophy-badge" id="trophy-badge">🏆</div>
+                <h2 id="result-rank-title">XẾP LOẠI: XUẤT SẮC (100%)</h2>
+                <p id="result-rank-desc">Chúc mừng! Bạn đã hoàn thành xuất sắc bài kiểm tra!</p>
+            </div>
+
+            <div class="score-card">
+                <div class="score-big">
+                    <span class="score-num" id="result-score-num">5</span>
+                    <span class="score-denom" id="result-score-denom">/ 5</span>
+                </div>
+                <div class="score-percentage" id="result-score-percent">100%</div>
+                <div class="score-meta" id="result-score-meta">
+                    Thời gian làm bài: <strong>03:45</strong> • Chế độ: <strong>Thi Thử (1 Chiều)</strong>
+                </div>
+            </div>
+
+            <!-- Bảng phân tích chi tiết từng câu -->
+            <div class="review-section">
+                <h3>BẢNG TỔNG KẾT TỪNG ẢI TRẬN ĐẤU</h3>
+                <div class="review-list" id="review-list">
+                    <!-- Javascript render danh sách câu đúng/sai -->
+                </div>
+            </div>
+
+            <div class="result-actions">
+                <button id="btn-restart-exam" class="btn-primary">🔄 THI LẠI LẦN NỮA</button>
+                <button id="btn-back-lobby" class="btn-secondary">🏠 VỀ SẢNH CHỜ</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================== -->
+    <!-- MODAL POPUP: LỊCH SỬ THI ĐẤU (EXAM HISTORY)     -->
+    <!-- ============================================== -->
+    <div id="history-modal" class="modal-backdrop hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="history-modal-title">📜 LỊCH SỬ THI THỬ</h3>
+                <button id="btn-close-modal" class="btn-icon">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="history-empty" class="history-empty">Chưa có bản lưu kết quả nào. Hãy hoàn thành một bài thi thử trước nhé!</div>
+                <div class="table-responsive">
+                    <table class="history-table" id="history-table">
+                        <thead>
+                            <tr>
+                                <th>Thời Gian</th>
+                                <th>Chế Độ</th>
+                                <th>Điểm</th>
+                                <th>Tỉ Lệ</th>
+                                <th>Thời Lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body">
+                            <!-- Javascript render dòng lịch sử -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-clear-history" class="btn-danger-outline">Xóa Lịch Sử</button>
+                <button id="btn-close-history-bottom" class="btn-secondary">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC ENGINE -->
+    <script src="MockExam.js?v=3"></script>
+</body>
+</html>

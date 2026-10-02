@@ -1,0 +1,264 @@
+[
+  {
+    "id": "exam_1790870347883",
+    "date": "22:59:07 1/10/2026",
+    "timestamp": "2026-10-01T15:59:07.885Z",
+    "mode": "Làm Lại Câu Sai",
+    "score": "3/3",
+    "score_count": 3,
+    "total_count": 3,
+    "percent": 100,
+    "duration": "00:00",
+    "failed_question_ids": [],
+    "questions_attempted": [
+      {
+        "id": 37,
+        "is_correct": true
+      },
+      {
+        "id": 52,
+        "is_correct": true
+      },
+      {
+        "id": 53,
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1790867819292",
+    "date": "22:16:59 1/10/2026",
+    "timestamp": "2026-10-01T15:16:59.292Z",
+    "mode": "Làm Lại Câu Sai",
+    "score": "4/7",
+    "score_count": 4,
+    "total_count": 7,
+    "percent": 57,
+    "duration": "00:00",
+    "failed_question_ids": [
+      37,
+      52,
+      53
+    ],
+    "questions_attempted": [
+      {
+        "id": 27,
+        "is_correct": true
+      },
+      {
+        "id": 32,
+        "is_correct": true
+      },
+      {
+        "id": 37,
+        "is_correct": false
+      },
+      {
+        "id": 44,
+        "is_correct": true
+      },
+      {
+        "id": 51,
+        "is_correct": true
+      },
+      {
+        "id": 52,
+        "is_correct": false
+      },
+      {
+        "id": 53,
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "exam_1790865991852",
+    "date": "21:46:31 1/10/2026",
+    "timestamp": "2026-10-01T14:46:31.856Z",
+    "mode": "Thi Thử (1 Chiều)",
+    "score": "17/20",
+    "score_count": 17,
+    "total_count": 20,
+    "percent": 85,
+    "duration": "15:52",
+    "failed_question_ids": [
+      37,
+      44,
+      32
+    ],
+    "questions_attempted": [
+      {
+        "id": 37,
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "is_correct": true
+      },
+      {
+        "id": 27,
+        "is_correct": true
+      },
+      {
+        "id": 44,
+        "is_correct": false
+      },
+      {
+        "id": 31,
+        "is_correct": true
+      },
+      {
+        "id": 47,
+        "is_correct": true
+      },
+      {
+        "id": 43,
+        "is_correct": true
+      },
+      {
+        "id": 30,
+        "is_correct": true
+      },
+      {
+        "id": 21,
+        "is_correct": true
+      },
+      {
+        "id": 32,
+        "is_correct": false
+      },
+      {
+        "id": 23,
+        "is_correct": true
+      },
+      {
+        "id": 22,
+        "is_correct": true
+      },
+      {
+        "id": 50,
+        "is_correct": true
+      },
+      {
+        "id": 13,
+        "is_correct": true
+      },
+      {
+        "id": 19,
+        "is_correct": true
+      },
+      {
+        "id": 14,
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "is_correct": true
+      },
+      {
+        "id": 36,
+        "is_correct": true
+      },
+      {
+        "id": 16,
+        "is_correct": true
+      },
+      {
+        "id": 40,
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1790844283527",
+    "date": "15:44:43 1/10/2026",
+    "timestamp": "2026-10-01T08:44:43.539Z",
+    "mode": "Thi Thử (1 Chiều)",
+    "score": "0/1",
+    "score_count": 0,
+    "total_count": 1,
+    "percent": 0,
+    "duration": "00:11",
+    "failed_question_ids": [
+      27
+    ],
+    "questions_attempted": [
+      {
+        "id": 27,
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "exam_1790842667328",
+    "date": "15:17:47 1/10/2026",
+    "timestamp": "2026-10-01T08:17:47.328Z",
+    "mode": "Làm Lại Câu Sai",
+    "score": "2/2",
+    "score_count": 2,
+    "total_count": 2,
+    "percent": 100,
+    "duration": "00:00",
+    "failed_question_ids": [],
+    "questions_attempted": [
+      {
+        "id": 33,
+        "is_correct": true
+      },
+      {
+        "id": 41,
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1790842432535",
+    "date": "15:13:52 1/10/2026",
+    "timestamp": "2026-10-01T08:13:52.535Z",
+    "mode": "Thi Thử (1 Chiều)",
+    "score": "2/3",
+    "score_count": 2,
+    "total_count": 3,
+    "percent": 67,
+    "duration": "00:36",
+    "failed_question_ids": [
+      33
+    ],
+    "questions_attempted": [
+      {
+        "id": 33,
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "is_correct": true
+      },
+      {
+        "id": 31,
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1790842304223",
+    "date": "15:11:44 1/10/2026",
+    "timestamp": "2026-10-01T08:11:44.235Z",
+    "mode": "Thi Thử (1 Chiều)",
+    "score": "2/2",
+    "score_count": 2,
+    "total_count": 2,
+    "percent": 100,
+    "duration": "01:13",
+    "failed_question_ids": [],
+    "questions_attempted": [
+      {
+        "id": 27,
+        "is_correct": true
+      },
+      {
+        "id": 20,
+        "is_correct": true
+      }
+    ]
+  }
+]
