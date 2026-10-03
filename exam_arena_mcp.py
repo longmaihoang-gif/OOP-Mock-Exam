@@ -159,8 +159,8 @@ def test_compile_and_run(cpp_code, timeout_compile=10, timeout_run=4):
         return False, "", f"Không thể kích hoạt g++: {e}"
 
     temp_dir = tempfile.gettempdir()
-    temp_cpp = os.path.join(temp_dir, f"_aris_mcp_{os.getpid()}_{id(cpp_code)}.cpp")
-    temp_exe = os.path.join(temp_dir, f"_aris_mcp_{os.getpid()}_{id(cpp_code)}.exe")
+    temp_cpp = os.path.join(temp_dir, f"_arena_mcp_{os.getpid()}_{id(cpp_code)}.cpp")
+    temp_exe = os.path.join(temp_dir, f"_arena_mcp_{os.getpid()}_{id(cpp_code)}.exe")
 
     try:
         with open(temp_cpp, "w", encoding="utf-8") as f:
@@ -243,7 +243,7 @@ def tool_get_failed_questions(args):
 
     failed_ids = target_exam.get("failed_question_ids", [])
     if not failed_ids:
-        return f"Tuyệt vời! Trong bài thi {target_exam.get('id')} ({target_exam.get('date')}), Sensei đã đạt 100% điểm số và không làm sai câu nào!"
+        return f"Tuyệt vời! Trong bài thi {target_exam.get('id')} ({target_exam.get('date')}), thí sinh đã đạt 100% điểm số và không làm sai câu nào!"
 
     all_questions = {q["id"]: q for q in load_question_csv()}
     attempted_map = {}
@@ -427,7 +427,7 @@ def tool_verify_and_save_revenge_question(args):
         "actual_stdout": stdout_out,
         "added_to_mistakes_queue": True,
         "total_mistakes_pending": len(mistakes),
-        "message": f"Pan-paka-pan! Đã tạo thành công câu hỏi phục thù mang ID {next_id}! Câu hỏi đã được nạp trực tiếp vào hàng chờ 'LÀM LẠI CÂU SAI' trên web để Sensei vào chiến ngay!"
+        "message": f"Đã tạo thành công câu hỏi phục thù mang ID {next_id}! Câu hỏi đã được nạp trực tiếp vào hàng chờ 'LÀM LẠI CÂU SAI' trên web để luyện tập ngay!"
     }
     if failed_qid:
         res["avenged_question_id"] = failed_qid
@@ -739,7 +739,7 @@ def handle_request(req):
             })
 
 def main():
-    log_debug("Tendou Aris MCP Server started in stdio mode.")
+    log_debug("Exam Arena MCP Server started in stdio mode.")
     for line in sys.stdin:
         line = line.strip()
         if not line:

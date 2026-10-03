@@ -20,6 +20,7 @@ PORT = 8000
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 HISTORY_FILE = os.path.join(BASE_DIR, "exam_history.json")
 MISTAKES_FILE = os.path.join(BASE_DIR, "mistakes.json")
+MASTERY_FILE = os.path.join(BASE_DIR, "mastery.json")
 
 class ArenaRequestHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -47,6 +48,9 @@ class ArenaRequestHandler(http.server.SimpleHTTPRequestHandler):
         elif path == "/api/history":
             self.handle_get_history()
             return
+        elif path == "/api/mastery":
+            self.handle_get_mastery()
+            return
 
         # Mặc định phục vụ static files
         super().do_GET()
@@ -67,6 +71,8 @@ class ArenaRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.handle_save_exam(data)
         elif path == "/api/mistakes":
             self.handle_save_mistakes(data)
+        elif path == "/api/mastery":
+            self.handle_save_mastery(data)
         else:
             self.send_response(404)
             self.end_headers()
@@ -180,10 +186,58 @@ class ArenaRequestHandler(http.server.SimpleHTTPRequestHandler):
             with open(MISTAKES_FILE, "w", encoding="utf-8") as f:
                 json.dump(current_mistakes, f, ensure_ascii=False, indent=2)
 
+        # Cập nhật điểm thông thạo câu hỏi (Adaptive Mastery Streaks)
+        questions_attempted = data.get("questions_attempted", [])
+        if questions_attempted and isinstance(questions_attempted, list):
+            mastery = {}
+            if os.path.exists(MASTERY_FILE):
+                try:
+                    with open(MASTERY_FILE, "r", encoding="utf-8") as f:
+                        mastery = json.load(f)
+                except Exception:
+                    mastery = {}
+            for q in questions_attempted:
+                qid = str(q.get("id"))
+                if q.get("is_correct"):
+                    mastery[qid] = mastery.get(qid, 0) + 1
+                else:
+                    mastery[qid] = 0
+            with open(MASTERY_FILE, "w", encoding="utf-8") as f:
+                json.dump(mastery, f, ensure_ascii=False, indent=2)
+
         self.send_response(200)
         self.send_header('Content-Type', 'application/json; charset=utf-8')
         self.end_headers()
         self.wfile.write(b'{"status": "success", "message": "Exam history synced successfully"}')
+
+    def handle_get_mastery(self):
+        mastery = {}
+        if os.path.exists(MASTERY_FILE):
+            try:
+                with open(MASTERY_FILE, "r", encoding="utf-8") as f:
+                    mastery = json.load(f)
+            except Exception:
+                mastery = {}
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json; charset=utf-8')
+        self.end_headers()
+        self.wfile.write(json.dumps(mastery, ensure_ascii=False).encode('utf-8'))
+
+    def handle_save_mastery(self, data):
+        if not isinstance(data, dict):
+            data = {}
+        clean_mastery = {}
+        for k, v in data.items():
+            try:
+                clean_mastery[str(k)] = max(0, int(v))
+            except (ValueError, TypeError):
+                continue
+        with open(MASTERY_FILE, "w", encoding="utf-8") as f:
+            json.dump(clean_mastery, f, ensure_ascii=False, indent=2)
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json; charset=utf-8')
+        self.end_headers()
+        self.wfile.write(json.dumps({"status": "success", "count": len(clean_mastery)}).encode('utf-8'))
 
 
 def main():
@@ -191,7 +245,7 @@ def main():
     print("  💻 HE THONG THI THU TRAC NGHIEM C++ OOP - LOCAL SERVER")
     print(f"  May chu dang lang nghe tai: http://localhost:{PORT}")
     print(f"  Thu muc goc: {BASE_DIR}")
-    print("  Ho tro API: /api/save-exam | /api/mistakes | /api/history")
+    print("  Ho tro API: /api/save-exam | /api/mistakes | /api/history | /api/mastery")
     print("=" * 65)
 
     server = http.server.ThreadingHTTPServer(('0.0.0.0', PORT), ArenaRequestHandler)

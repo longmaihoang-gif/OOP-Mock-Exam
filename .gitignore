@@ -4,5 +4,17 @@
 *.obj
 *.out
 
+# Environment & API Keys
+.env
+*.env
+
+# OCR Input and Temporary Extracted Code
+extracted_cpp/
+input_images/
+
+# Python Cache
+__pycache__/
+*.pyc
+
 # Secret GDD Millennium Theme Override (Hidden Easter Egg)
 gdd_secret*.json

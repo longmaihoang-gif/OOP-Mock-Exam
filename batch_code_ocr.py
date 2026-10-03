@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 =============================================================================
-  ⚔️ TENDOU ARIS - MULTI-IMAGE BATCH C++ CODE OCR (VISION REST ENGINE) ⚔️
+  MULTI-IMAGE BATCH C++ CODE OCR (VISION REST ENGINE)
   Chế độ: Gửi 10 ảnh / 1 lượt request -> Tối ưu hóa lượt gọi API và Mana
   Model mặc định: Gemini 3.5 Flash Lite (Cooldown: 3.0s sau khi xong mỗi mẻ)
   Tự động kích hoạt Resume Engine (bỏ qua các file .cpp đã tồn tại)
@@ -52,15 +52,15 @@ def get_api_key():
                             return val
 
     print("\n🔑 Chưa phát hiện GEMINI_API_KEY trong hệ thống!")
-    api_key = input("👉 Sensei hãy dán khóa bí mật (Gemini API Key) vào đây: ").strip()
+    api_key = input("👉 Vui lòng nhập Gemini API Key vào đây: ").strip()
     if not api_key:
-        print("❌ Sensei chưa cung cấp API Key. Nhiệm vụ bị hủy bỏ!")
+        print("❌ Chưa cung cấp API Key. Tiến trình bị hủy bỏ!")
         sys.exit(1)
 
     target_env = os.path.join(CURRENT_DIR, ".env")
     with open(target_env, 'w', encoding='utf-8') as f:
         f.write(f"GEMINI_API_KEY={api_key}\n")
-    print(f"✨ Đã phong ấn API Key vào tệp {target_env} an toàn!")
+    print(f"✨ Đã lưu API Key vào tệp {target_env} an toàn!")
     return api_key
 
 
@@ -252,7 +252,7 @@ def run_multi_batch_ocr(
 
     if not all_image_paths:
         print(f"📁 [THÔNG BÁO]: Chưa có ảnh nào trong thư mục: {input_path}")
-        print("👉 Sensei hãy thả các bức ảnh bài tập C++ vào đây rồi chạy lại nhé!")
+        print("👉 Vui lòng sao chép các ảnh bài tập C++ vào thư mục này rồi chạy lại!")
         return
 
     # 1. Quét danh sách cần làm (Resume Engine: Lọc ảnh chưa có code)
@@ -268,7 +268,7 @@ def run_multi_batch_ocr(
             pending_images.append({'path': p, 'name': name, 'base': base})
 
     print("==================================================================")
-    print(f"⚔️ [CHIẾN DỊCH BATCH OCR C++ - HERO ARIS]")
+    print(f"⚔️ [TIẾN TRÌNH BATCH OCR C++]")
     print(f"🎯 Model triệu hồi:  {model_name}")
     print(f"📦 Kích thước đợt:   {batch_size} ảnh / 1 request")
     print(f"⏳ Thời gian hồi chiêu: {cooldown_seconds}s (tính từ lúc mẻ làm xong)")
@@ -323,12 +323,12 @@ def run_multi_batch_ocr(
 
         # Thời gian hồi chiêu: đúng 3s tính từ lúc hoàn thành mẻ (nếu chưa phải mẻ cuối)
         if b_idx < total_batches and cooldown_seconds > 0:
-            print(f"   ⏳ Nghỉ {cooldown_seconds}s hồi mana theo lệnh Sensei...\n")
+            print(f"   ⏳ Tạm dừng {cooldown_seconds}s chống quá tải API...\n")
             time.sleep(cooldown_seconds)
 
     print("\n==================================================================")
     print(f"🎉 TẤT CẢ CÁC ĐỢT ĐÃ HOÀN TẤT! Tổng cộng: {total_success}/{len(all_image_paths)} file .cpp.")
-    print(f"📂 Thư mục chứa chiến lợi phẩm: {output_path}")
+    print(f"📂 Thư mục xuất mã nguồn: {output_path}")
     print("==================================================================")
 
 

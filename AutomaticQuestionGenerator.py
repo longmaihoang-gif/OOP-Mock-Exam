@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 =============================================================================
-  ⚔️ TENDOU ARIS - C++ OOP AUTOMATIC QUESTION GENERATOR ⚔️
+  C++ OOP AUTOMATIC QUESTION GENERATOR
   Chương trình sinh đề thi trắc nghiệm C++ OOP tự động bằng Gemini API
   Đảm bảo tỷ lệ 90% Code / 10% Lý thuyết chính xác 100% bằng toán học!
 =============================================================================
@@ -79,16 +79,16 @@ def get_api_key():
                         return val
 
     print("\n🔑 Chưa phát hiện GEMINI_API_KEY trong hệ thống!")
-    api_key = input("👉 Sensei hãy dán khóa bí mật (Gemini API Key) vào đây: ").strip()
+    api_key = input("👉 Vui lòng nhập Gemini API Key vào đây: ").strip()
     if not api_key:
-        print("❌ Sensei chưa cung cấp API Key. Nhiệm vụ bị hủy bỏ!")
+        print("❌ Chưa cung cấp API Key. Tiến trình bị hủy bỏ!")
         sys.exit(1)
         
-    save_opt = input("💾 Sensei có muốn Aris lưu API Key này vào .env để lần sau dùng tiếp không? (y/n): ").strip().lower()
+    save_opt = input("💾 Bạn có muốn lưu API Key này vào .env để lần sau dùng tiếp không? (y/n): ").strip().lower()
     if save_opt in ['y', 'yes']:
         with open(env_path, 'w', encoding='utf-8') as f:
             f.write(f"GEMINI_API_KEY={api_key}\n")
-        print("✨ Đã phong ấn API Key vào tệp .env an toàn!")
+        print("✨ Đã lưu API Key vào tệp .env an toàn!")
     return api_key
 
 # =============================================================================
@@ -278,8 +278,8 @@ def verify_cpp_code(q_code, q_type, opt1):
 
     # Lưu file tạm tại thư mục Temp của hệ điều hành để tránh lỗi đường dẫn có dấu tiếng Việt (Tài liệu)
     temp_dir = tempfile.gettempdir()
-    temp_cpp = os.path.join(temp_dir, "_aris_verify_temp.cpp")
-    temp_exe = os.path.join(temp_dir, "_aris_verify_temp.exe")
+    temp_cpp = os.path.join(temp_dir, "_exam_verify_temp.cpp")
+    temp_exe = os.path.join(temp_dir, "_exam_verify_temp.exe")
 
     try:
         with open(temp_cpp, 'w', encoding='utf-8') as f:
@@ -372,8 +372,8 @@ def save_code_file(qid, code_content):
 def main():
     print("""
 ╔═════════════════════════════════════════════════════════════════════╗
-║         ⚔️ TENDOU ARIS - C++ OOP DUNGEON SPAWN ENGINE ⚔️              ║
-║           Hệ thống kiến tạo quái vật trắc nghiệm C++ OOP!           ║
+║             C++ OOP QUESTION GENERATION ENGINE                      ║
+║           Hệ thống tự động sinh câu hỏi trắc nghiệm C++ OOP         ║
 ╚═════════════════════════════════════════════════════════════════════╝
 """)
     
@@ -392,16 +392,16 @@ def main():
     # Nhập số lượng câu muốn sinh
     while True:
         try:
-            total_req = input("\n🎮 Sensei muốn Aris sinh thêm bao nhiêu câu hỏi mới? (ví dụ 10, 20): ").strip()
+            total_req = input("\n🎮 Bạn muốn sinh thêm bao nhiêu câu hỏi mới? (ví dụ 10, 20): ").strip()
             total_req = int(total_req)
             if total_req > 0:
                 break
-            print("⚠️ Sensei hãy nhập số lượng lớn hơn 0 nhé!")
+            print("⚠️ Vui lòng nhập số lượng lớn hơn 0!")
         except ValueError:
-            print("⚠️ Vui lòng nhập số nguyên hợp lệ ạ!")
+            print("⚠️ Vui lòng nhập số nguyên hợp lệ!")
 
     # 1. Tính toán Blueprint định mệnh
-    print(f"\n🔮 [Aris Engine]: Đang tính toán ma trận xác suất cho {total_req} câu hỏi...")
+    print(f"\n🔮 [Generation Engine]: Đang tính toán ma trận xác suất cho {total_req} câu hỏi...")
     blueprints = generate_exact_blueprints(total_req, config)
 
     code_total = sum(1 for b in blueprints if b["has_code"])

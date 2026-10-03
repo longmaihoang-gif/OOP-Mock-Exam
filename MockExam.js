@@ -203,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateMistakesButtonUI();
     tryFetchCsvFile();
     tryFetchMistakesFromServer();
+    tryFetchMasteryFromServer();
     tryLoadSecretTheme();
 });
 
@@ -456,9 +457,8 @@ function startSession(mode) {
             return `${getUserLabel()} đang trong phòng thi! Nếu rời đi kết quả sẽ không được ghi nhận!`;
         };
 
-        // Xáo trộn toàn bộ ngân hàng câu hỏi để chọn ngẫu nhiên
-        shuffleArray(selectedPool);
-        STATE.currentExamQuestions = selectedPool.slice(0, countVal);
+        // Bốc thăm câu hỏi theo thuật toán Gacha trọng số thích ứng (Adaptive Weighted Gacha)
+        STATE.currentExamQuestions = sampleQuestionsByMastery(selectedPool, countVal);
 
         // Cài đặt thời gian
         STATE.timeRemainingSeconds = minutes * 60;
@@ -486,7 +486,13 @@ function startSession(mode) {
         DOM.btnQuitStudy.classList.remove('hidden');
         window.onbeforeunload = null;
 
-        STATE.currentExamQuestions = selectedPool;
+        // Ưu tiên câu có độ thông thạo thấp (cần rèn luyện) lên trước
+        const studyPool = [...selectedPool];
+        shuffleArray(studyPool);
+        const mastery = getQuestionMasteryMap();
+        studyPool.sort((a, b) => (mastery[String(a.id)] || 0) - (mastery[String(b.id)] || 0));
+
+        STATE.currentExamQuestions = studyPool;
         STATE.strictForward = false;
         DOM.timerBox.classList.add('hidden');
     }
@@ -725,6 +731,7 @@ function highlightCppCode(rawCode) {
 function handleOptionClick(optIndex) {
     const q = STATE.currentExamQuestions[STATE.currentIndex];
     const chosenOption = q.shuffledOptions[optIndex];
+    const isFirstAttempt = !STATE.userAnswers[STATE.currentIndex];
 
     STATE.userAnswers[STATE.currentIndex] = {
         chosenIndex: optIndex,
@@ -734,6 +741,11 @@ function handleOptionClick(optIndex) {
     };
 
     if (STATE.mode === 'STUDY' || STATE.mode === 'MISTAKE_STUDY') {
+        // Cập nhật độ thông thạo nếu là lần thử đầu tiên của câu này trong phiên học
+        if (isFirstAttempt) {
+            updateQuestionMastery(q.id, chosenOption.isCorrect);
+        }
+
         // STUDY MODE & MISTAKE_STUDY: Hiện ngay lập tức đúng hay sai
         if (STATE.mode === 'MISTAKE_STUDY' && chosenOption.isCorrect) {
             // Câu nào đã trả lời đúng thì loại bỏ khỏi danh sách câu sai
@@ -881,7 +893,7 @@ function finishExam() {
         failed_question_ids: failedQuestionIds,
         questions_attempted: STATE.currentExamQuestions.map((q, idx) => ({
             id: q.id,
-            user_answer: STATE.userAnswers[idx] ? STATE.userAnswers[idx].selectedOption : null,
+            user_answer: STATE.userAnswers[idx] ? STATE.userAnswers[idx].chosenText : null,
             is_correct: STATE.userAnswers[idx] ? STATE.userAnswers[idx].isCorrect : false
         }))
     };
@@ -895,6 +907,13 @@ function finishExam() {
     });
 
     syncExamToServer(examRecord);
+
+    // Cập nhật điểm thông thạo ngầm định của từng câu hỏi (Adaptive Mastery Streaks)
+    const masteryResults = STATE.currentExamQuestions.map((q, idx) => ({
+        id: q.id,
+        isCorrect: STATE.userAnswers[idx] ? STATE.userAnswers[idx].isCorrect : false
+    }));
+    batchUpdateMastery(masteryResults);
 
     // Nếu ở chế độ THI THỬ (EXAM), câu nào làm sai thì thêm vào danh sách câu sai (chỉ 1 lần)
     if (STATE.mode === 'EXAM' && failedQuestionIds.length > 0) {
@@ -1074,6 +1093,115 @@ function updateMistakesButtonUI() {
 // Xuất các hàm ra phạm vi toàn cục để script ngoài hoặc MCP Server có thể gọi trực tiếp
 window.addMistakeQuestionIds = addMistakeQuestionIds;
 window.getMistakeQuestionIds = getMistakeQuestionIds;
+
+// ==========================================================================
+// LOCAL STORAGE & SERVER SYNC ĐỘ THÔNG THẠO CÂU HỎI (ADAPTIVE MASTERY)
+// ==========================================================================
+const MASTERY_STORAGE_KEY = 'GDD_QUESTION_MASTERY_v1';
+
+function getQuestionMasteryMap() {
+    try {
+        const raw = localStorage.getItem(MASTERY_STORAGE_KEY);
+        return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+        return {};
+    }
+}
+
+function getQuestionStreak(id) {
+    const map = getQuestionMasteryMap();
+    return map[String(id)] || 0;
+}
+
+function updateQuestionMastery(questionId, isCorrect) {
+    const map = getQuestionMasteryMap();
+    const key = String(questionId);
+    if (isCorrect) {
+        map[key] = (map[key] || 0) + 1;
+    } else {
+        map[key] = 0;
+    }
+    localStorage.setItem(MASTERY_STORAGE_KEY, JSON.stringify(map));
+    syncMasteryToServer(map);
+}
+
+function batchUpdateMastery(results) {
+    if (!results || results.length === 0) return;
+    const map = getQuestionMasteryMap();
+    results.forEach(r => {
+        const key = String(r.id);
+        if (r.isCorrect) {
+            map[key] = (map[key] || 0) + 1;
+        } else {
+            map[key] = 0;
+        }
+    });
+    localStorage.setItem(MASTERY_STORAGE_KEY, JSON.stringify(map));
+    syncMasteryToServer(map);
+}
+
+async function syncMasteryToServer(masteryMap) {
+    try {
+        await fetch('/api/mastery', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(masteryMap)
+        });
+    } catch (e) {
+        // Chế độ file:// hoặc offline
+    }
+}
+
+async function tryFetchMasteryFromServer() {
+    try {
+        const res = await fetch('/api/mastery');
+        if (res.ok) {
+            const serverMastery = await res.json();
+            if (serverMastery && typeof serverMastery === 'object') {
+                const local = getQuestionMasteryMap();
+                const merged = Object.assign({}, serverMastery, local);
+                localStorage.setItem(MASTERY_STORAGE_KEY, JSON.stringify(merged));
+            }
+        }
+    } catch (e) {
+        // Chế độ file:// hoặc offline
+    }
+}
+
+/**
+ * Thuật toán Bốc thăm Ngẫu nhiên có Trọng số không hoàn lại (Weighted Random Sampling Without Replacement)
+ * Dựa trên thuật toán Efraimidis-Spirakis (A-Res).
+ * Trọng số nghịch đảo: W_i = 1 / (streak_i + 1)
+ * Trọng số càng cao (streak = 0: chưa làm hoặc vừa làm sai) thì xác suất bốc trúng càng lớn!
+ */
+function sampleQuestionsByMastery(pool, count) {
+    if (!pool || pool.length === 0) return [];
+    if (count >= pool.length) {
+        const copy = [...pool];
+        shuffleArray(copy);
+        return copy;
+    }
+
+    const masteryMap = getQuestionMasteryMap();
+
+    const weightedItems = pool.map(item => {
+        const streak = masteryMap[String(item.id)] || 0;
+        // W = 1 / (streak + 1)
+        const weight = 1.0 / (streak + 1);
+        const u = Math.random();
+        // Efraimidis-Spirakis key: u^(1/w)
+        const key = Math.pow(Math.max(0.000001, u), 1.0 / weight);
+        return { item, key };
+    });
+
+    // Sắp xếp giảm dần theo key và lấy đúng `count` phần tử
+    weightedItems.sort((a, b) => b.key - a.key);
+    return weightedItems.slice(0, count).map(entry => entry.item);
+}
+
+window.getQuestionMasteryMap = getQuestionMasteryMap;
+window.getQuestionStreak = getQuestionStreak;
+window.sampleQuestionsByMastery = sampleQuestionsByMastery;
 
 // ==========================================================================
 // LOCAL STORAGE LỊCH SỬ KẾT QUẢ THI

@@ -1,5 +1,927 @@
 [
   {
+    "id": "exam_1791006031956",
+    "date": "12:40:31 3/10/2026",
+    "timestamp": "2026-10-03T05:40:31.960Z",
+    "mode": "Thi Thử (1 Chiều)",
+    "score": "6/8",
+    "score_count": 6,
+    "total_count": 8,
+    "percent": 75,
+    "duration": "03:57",
+    "failed_question_ids": [
+      100,
+      118
+    ],
+    "questions_attempted": [
+      {
+        "id": 136,
+        "user_answer": "25",
+        "is_correct": true
+      },
+      {
+        "id": 100,
+        "user_answer": "1009",
+        "is_correct": false
+      },
+      {
+        "id": 112,
+        "user_answer": "12",
+        "is_correct": true
+      },
+      {
+        "id": 85,
+        "user_answer": "11 12",
+        "is_correct": true
+      },
+      {
+        "id": 118,
+        "user_answer": "In ra DUTITF",
+        "is_correct": false
+      },
+      {
+        "id": 54,
+        "user_answer": "C1 C2 D2 C3 D3 D1",
+        "is_correct": true
+      },
+      {
+        "id": 64,
+        "user_answer": "(3, 4)",
+        "is_correct": true
+      },
+      {
+        "id": 158,
+        "user_answer": "Length = 15",
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1791003945163",
+    "date": "12:05:45 3/10/2026",
+    "timestamp": "2026-10-03T05:05:45.167Z",
+    "mode": "Thi Thử (1 Chiều)",
+    "score": "8/10",
+    "score_count": 8,
+    "total_count": 10,
+    "percent": 80,
+    "duration": "07:19",
+    "failed_question_ids": [
+      134,
+      103
+    ],
+    "questions_attempted": [
+      {
+        "id": 18,
+        "user_answer": "10 50 100",
+        "is_correct": true
+      },
+      {
+        "id": 145,
+        "user_answer": "40-10",
+        "is_correct": true
+      },
+      {
+        "id": 134,
+        "user_answer": "Undefined Behavior (Giá trị rác)",
+        "is_correct": false
+      },
+      {
+        "id": 146,
+        "user_answer": "3 4 5",
+        "is_correct": true
+      },
+      {
+        "id": 103,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": false
+      },
+      {
+        "id": 9,
+        "user_answer": "4",
+        "is_correct": true
+      },
+      {
+        "id": 99,
+        "user_answer": "Toán tử hậu tố bắt buộc phải có tham số giả (dummy parameter) kiểu int để phân biệt với tiền tố, và phải tạo một bản sao giá trị cũ để trả về trước khi thực sự tăng giá trị bên trong.",
+        "is_correct": true
+      },
+      {
+        "id": 48,
+        "user_answer": "6 6 7",
+        "is_correct": true
+      },
+      {
+        "id": 149,
+        "user_answer": "10 20",
+        "is_correct": true
+      },
+      {
+        "id": 106,
+        "user_answer": "00",
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1791000245260",
+    "date": "11:04:05 3/10/2026",
+    "timestamp": "2026-10-03T04:04:05.260Z",
+    "mode": "Thi Thử (1 Chiều)",
+    "score": "43/50",
+    "score_count": 43,
+    "total_count": 50,
+    "percent": 86,
+    "duration": "39:11",
+    "failed_question_ids": [
+      105,
+      110,
+      49,
+      156,
+      140,
+      112,
+      116
+    ],
+    "questions_attempted": [
+      {
+        "id": 123,
+        "user_answer": "15",
+        "is_correct": true
+      },
+      {
+        "id": 124,
+        "user_answer": "12",
+        "is_correct": true
+      },
+      {
+        "id": 155,
+        "user_answer": "6 6 7",
+        "is_correct": true
+      },
+      {
+        "id": 157,
+        "user_answer": "D2 D3 D1",
+        "is_correct": true
+      },
+      {
+        "id": 15,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": true
+      },
+      {
+        "id": 88,
+        "user_answer": "Wheel_Init Engine_Init Car_Init Car_Destroy Engine_Destroy Wheel_Destroy",
+        "is_correct": true
+      },
+      {
+        "id": 85,
+        "user_answer": "11 12",
+        "is_correct": true
+      },
+      {
+        "id": 143,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": true
+      },
+      {
+        "id": 34,
+        "user_answer": "Phương thức static không thể được khai báo là const vì chúng không có con trỏ this để phân biệt đối tượng gọi hàm, và thuộc tính static bắt buộc phải được định nghĩa bên ngoài thân lớp (ngoại trừ const static kiểu nguyên khởi tạo trực tiếp).",
+        "is_correct": true
+      },
+      {
+        "id": 107,
+        "user_answer": "25",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": true
+      },
+      {
+        "id": 78,
+        "user_answer": "7 7 10",
+        "is_correct": true
+      },
+      {
+        "id": 68,
+        "user_answer": "Chương trình biên dịch thành công, in ra đúng thứ tự khởi tạo và hủy của các đối tượng theo phạm vi block scope.",
+        "is_correct": true
+      },
+      {
+        "id": 139,
+        "user_answer": "237",
+        "is_correct": true
+      },
+      {
+        "id": 98,
+        "user_answer": "3",
+        "is_correct": true
+      },
+      {
+        "id": 105,
+        "user_answer": "55",
+        "is_correct": false
+      },
+      {
+        "id": 152,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": true
+      },
+      {
+        "id": 110,
+        "user_answer": "AB2020",
+        "is_correct": false
+      },
+      {
+        "id": 63,
+        "user_answer": "Copy constructor bắt buộc phải nhận tham số truyền vào là tham chiếu hằng (const Type&), nếu nhận tham số theo giá trị (Type) sẽ gây lỗi biên dịch do đệ quy vô hạn.",
+        "is_correct": true
+      },
+      {
+        "id": 25,
+        "user_answer": "30",
+        "is_correct": true
+      },
+      {
+        "id": 22,
+        "user_answer": "Quan hệ bạn bè không có tính hai chiều (không đối xứng), không có tính bắc cầu và không được kế thừa.",
+        "is_correct": true
+      },
+      {
+        "id": 49,
+        "user_answer": "23",
+        "is_correct": false
+      },
+      {
+        "id": 69,
+        "user_answer": "15 100 \\n 25 100",
+        "is_correct": true
+      },
+      {
+        "id": 94,
+        "user_answer": "Thực hiện gọi toán tử thành viên (Member+) trước khi cộng n với 10, sau đó gọi toán tử bạn (Friend+) khi cộng 10 với n.",
+        "is_correct": true
+      },
+      {
+        "id": 81,
+        "user_answer": "10 20",
+        "is_correct": true
+      },
+      {
+        "id": 5,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": true
+      },
+      {
+        "id": 19,
+        "user_answer": "Start C1 C2 D2 C3 D3 D1 End",
+        "is_correct": true
+      },
+      {
+        "id": 158,
+        "user_answer": "Length = 15",
+        "is_correct": true
+      },
+      {
+        "id": 156,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": false
+      },
+      {
+        "id": 39,
+        "user_answer": "Chương trình chạy bình thường và không có lỗi",
+        "is_correct": true
+      },
+      {
+        "id": 140,
+        "user_answer": "Chương trình biên dịch thành công và in ra: 36",
+        "is_correct": false
+      },
+      {
+        "id": 145,
+        "user_answer": "40-10",
+        "is_correct": true
+      },
+      {
+        "id": 138,
+        "user_answer": "2",
+        "is_correct": true
+      },
+      {
+        "id": 93,
+        "user_answer": "const_cast<int*>(ptr);",
+        "is_correct": true
+      },
+      {
+        "id": 150,
+        "user_answer": "Init;Conv;Func;",
+        "is_correct": true
+      },
+      {
+        "id": 112,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": false
+      },
+      {
+        "id": 92,
+        "user_answer": "p là con trỏ trỏ tới dữ liệu hằng (pointer to const), ta có thể thay đổi địa chỉ mà p lưu trữ nhưng không thể thay đổi giá trị của biến mà p đang trỏ tới thông qua *p.",
+        "is_correct": true
+      },
+      {
+        "id": 45,
+        "user_answer": "Chương trình biên dịch thành công và thực thi bình thường",
+        "is_correct": true
+      },
+      {
+        "id": 144,
+        "user_answer": "D-3 D-2 D-1",
+        "is_correct": true
+      },
+      {
+        "id": 116,
+        "user_answer": "Operator delete[] ExamB / Destructor Exam A / Destructor Exam A / Destructor Exam A",
+        "is_correct": false
+      },
+      {
+        "id": 151,
+        "user_answer": "15",
+        "is_correct": true
+      },
+      {
+        "id": 40,
+        "user_answer": "Chương trình chạy bình thường và không có lỗi",
+        "is_correct": true
+      },
+      {
+        "id": 119,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": true
+      },
+      {
+        "id": 12,
+        "user_answer": "3 2 0",
+        "is_correct": true
+      },
+      {
+        "id": 120,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": true
+      },
+      {
+        "id": 97,
+        "user_answer": "C1 C2 D2 D1",
+        "is_correct": true
+      },
+      {
+        "id": 135,
+        "user_answer": "N",
+        "is_correct": true
+      },
+      {
+        "id": 117,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": true
+      },
+      {
+        "id": 27,
+        "user_answer": "D3 D2 D1 D0",
+        "is_correct": true
+      },
+      {
+        "id": 54,
+        "user_answer": "C1 C2 D2 C3 D3 D1",
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1790995441452",
+    "date": "09:44:01 3/10/2026",
+    "timestamp": "2026-10-03T02:44:01.452Z",
+    "mode": "Thi Thử (1 Chiều)",
+    "score": "8/10",
+    "score_count": 8,
+    "total_count": 10,
+    "percent": 80,
+    "duration": "06:54",
+    "failed_question_ids": [
+      128,
+      57
+    ],
+    "questions_attempted": [
+      {
+        "id": 115,
+        "user_answer": "32",
+        "is_correct": true
+      },
+      {
+        "id": 97,
+        "user_answer": "C1 C2 D2 D1",
+        "is_correct": true
+      },
+      {
+        "id": 12,
+        "user_answer": "3 2 0",
+        "is_correct": true
+      },
+      {
+        "id": 28,
+        "user_answer": "20",
+        "is_correct": true
+      },
+      {
+        "id": 83,
+        "user_answer": "Alloc 5 Alloc 10 Assign 5 Del 5 Del 5",
+        "is_correct": true
+      },
+      {
+        "id": 128,
+        "user_answer": "8",
+        "is_correct": false
+      },
+      {
+        "id": 72,
+        "user_answer": "15 20 25",
+        "is_correct": true
+      },
+      {
+        "id": 46,
+        "user_answer": "1",
+        "is_correct": true
+      },
+      {
+        "id": 57,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": false
+      },
+      {
+        "id": 148,
+        "user_answer": "5 5",
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1790994843964",
+    "date": "09:34:03 3/10/2026",
+    "timestamp": "2026-10-03T02:34:03.964Z",
+    "mode": "Làm Lại Câu Sai",
+    "score": "3/3",
+    "score_count": 3,
+    "total_count": 3,
+    "percent": 100,
+    "duration": "09:04",
+    "failed_question_ids": [],
+    "questions_attempted": [
+      {
+        "id": 71,
+        "user_answer": "Lỗi thời gian chạy (Runtime Error)",
+        "is_correct": true
+      },
+      {
+        "id": 122,
+        "user_answer": "-11",
+        "is_correct": true
+      },
+      {
+        "id": 131,
+        "user_answer": "11",
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1790993952436",
+    "date": "09:19:12 3/10/2026",
+    "timestamp": "2026-10-03T02:19:12.439Z",
+    "mode": "Thi Thử (1 Chiều)",
+    "score": "8/10",
+    "score_count": 8,
+    "total_count": 10,
+    "percent": 80,
+    "duration": "09:04",
+    "failed_question_ids": [
+      131,
+      122
+    ],
+    "questions_attempted": [
+      {
+        "id": 114,
+        "user_answer": "ITFITF12",
+        "is_correct": true
+      },
+      {
+        "id": 69,
+        "user_answer": "15 100 \\n 25 100",
+        "is_correct": true
+      },
+      {
+        "id": 131,
+        "user_answer": "12",
+        "is_correct": false
+      },
+      {
+        "id": 72,
+        "user_answer": "15 20 25",
+        "is_correct": true
+      },
+      {
+        "id": 70,
+        "user_answer": "Chương trình biên dịch thành công và thực hiện toán tử gán an toàn nhờ kiểm tra tự gán và sao chép sâu.",
+        "is_correct": true
+      },
+      {
+        "id": 137,
+        "user_answer": "34567891011",
+        "is_correct": true
+      },
+      {
+        "id": 121,
+        "user_answer": "123",
+        "is_correct": true
+      },
+      {
+        "id": 75,
+        "user_answer": "20",
+        "is_correct": true
+      },
+      {
+        "id": 122,
+        "user_answer": "-1-1",
+        "is_correct": false
+      },
+      {
+        "id": 62,
+        "user_answer": "25 25 7",
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1790956222629",
+    "date": "22:50:22 2/10/2026",
+    "timestamp": "2026-10-02T15:50:22.632Z",
+    "mode": "Làm Lại Câu Sai",
+    "score": "1/2",
+    "score_count": 1,
+    "total_count": 2,
+    "percent": 50,
+    "duration": "00:00",
+    "failed_question_ids": [
+      71
+    ],
+    "questions_attempted": [
+      {
+        "id": 71,
+        "user_answer": "Lỗi rò rỉ bộ nhớ (Memory Leak)",
+        "is_correct": false
+      },
+      {
+        "id": 142,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1790956028071",
+    "date": "22:47:08 2/10/2026",
+    "timestamp": "2026-10-02T15:47:08.073Z",
+    "mode": "Thi Thử (1 Chiều)",
+    "score": "9/10",
+    "score_count": 9,
+    "total_count": 10,
+    "percent": 90,
+    "duration": "07:21",
+    "failed_question_ids": [
+      142
+    ],
+    "questions_attempted": [
+      {
+        "id": 16,
+        "user_answer": "Chương trình chạy bình thường và in ra: 1 2 3",
+        "is_correct": true
+      },
+      {
+        "id": 50,
+        "user_answer": "100 200 2",
+        "is_correct": true
+      },
+      {
+        "id": 18,
+        "user_answer": "10 50 100",
+        "is_correct": true
+      },
+      {
+        "id": 84,
+        "user_answer": "[Copy] [Copy] [Self] 1 2 3",
+        "is_correct": true
+      },
+      {
+        "id": 139,
+        "user_answer": "237",
+        "is_correct": true
+      },
+      {
+        "id": 51,
+        "user_answer": "17 7 2",
+        "is_correct": true
+      },
+      {
+        "id": 11,
+        "user_answer": "10 99 30",
+        "is_correct": true
+      },
+      {
+        "id": 82,
+        "user_answer": "Lỗi biên dịch",
+        "is_correct": true
+      },
+      {
+        "id": 55,
+        "user_answer": "Init1 Copy11 Init12 Destroy11 Destroy12 Destroy1",
+        "is_correct": true
+      },
+      {
+        "id": 142,
+        "user_answer": "Chương trình biên dịch thành công và in ra: CD",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "exam_1790950959854",
+    "date": "21:22:39 2/10/2026",
+    "timestamp": "2026-10-02T14:22:39.854Z",
+    "mode": "Làm Lại Câu Sai",
+    "score": "4/5",
+    "score_count": 4,
+    "total_count": 5,
+    "percent": 80,
+    "duration": "19:35",
+    "failed_question_ids": [
+      71
+    ],
+    "questions_attempted": [
+      {
+        "id": 42,
+        "is_correct": true
+      },
+      {
+        "id": 56,
+        "is_correct": true
+      },
+      {
+        "id": 62,
+        "is_correct": true
+      },
+      {
+        "id": 71,
+        "is_correct": false
+      },
+      {
+        "id": 79,
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1790950634046",
+    "date": "21:17:14 2/10/2026",
+    "timestamp": "2026-10-02T14:17:14.046Z",
+    "mode": "Thi Thử (1 Chiều)",
+    "score": "23/25",
+    "score_count": 23,
+    "total_count": 25,
+    "percent": 92,
+    "duration": "19:35",
+    "failed_question_ids": [
+      71,
+      56
+    ],
+    "questions_attempted": [
+      {
+        "id": 42,
+        "is_correct": true
+      },
+      {
+        "id": 16,
+        "is_correct": true
+      },
+      {
+        "id": 99,
+        "is_correct": true
+      },
+      {
+        "id": 65,
+        "is_correct": true
+      },
+      {
+        "id": 95,
+        "is_correct": true
+      },
+      {
+        "id": 51,
+        "is_correct": true
+      },
+      {
+        "id": 73,
+        "is_correct": true
+      },
+      {
+        "id": 71,
+        "is_correct": false
+      },
+      {
+        "id": 23,
+        "is_correct": true
+      },
+      {
+        "id": 75,
+        "is_correct": true
+      },
+      {
+        "id": 25,
+        "is_correct": true
+      },
+      {
+        "id": 86,
+        "is_correct": true
+      },
+      {
+        "id": 24,
+        "is_correct": true
+      },
+      {
+        "id": 49,
+        "is_correct": true
+      },
+      {
+        "id": 28,
+        "is_correct": true
+      },
+      {
+        "id": 31,
+        "is_correct": true
+      },
+      {
+        "id": 27,
+        "is_correct": true
+      },
+      {
+        "id": 56,
+        "is_correct": false
+      },
+      {
+        "id": 43,
+        "is_correct": true
+      },
+      {
+        "id": 47,
+        "is_correct": true
+      },
+      {
+        "id": 50,
+        "is_correct": true
+      },
+      {
+        "id": 62,
+        "is_correct": true
+      },
+      {
+        "id": 63,
+        "is_correct": true
+      },
+      {
+        "id": 60,
+        "is_correct": true
+      },
+      {
+        "id": 87,
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1790948256438",
+    "date": "20:37:36 2/10/2026",
+    "timestamp": "2026-10-02T13:37:36.443Z",
+    "mode": "Thi Thử (1 Chiều)",
+    "score": "22/25",
+    "score_count": 22,
+    "total_count": 25,
+    "percent": 88,
+    "duration": "22:03",
+    "failed_question_ids": [
+      62,
+      79,
+      42
+    ],
+    "questions_attempted": [
+      {
+        "id": 24,
+        "is_correct": true
+      },
+      {
+        "id": 46,
+        "is_correct": true
+      },
+      {
+        "id": 59,
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "is_correct": true
+      },
+      {
+        "id": 16,
+        "is_correct": true
+      },
+      {
+        "id": 90,
+        "is_correct": true
+      },
+      {
+        "id": 70,
+        "is_correct": true
+      },
+      {
+        "id": 40,
+        "is_correct": true
+      },
+      {
+        "id": 91,
+        "is_correct": true
+      },
+      {
+        "id": 43,
+        "is_correct": true
+      },
+      {
+        "id": 31,
+        "is_correct": true
+      },
+      {
+        "id": 11,
+        "is_correct": true
+      },
+      {
+        "id": 62,
+        "is_correct": false
+      },
+      {
+        "id": 66,
+        "is_correct": true
+      },
+      {
+        "id": 80,
+        "is_correct": true
+      },
+      {
+        "id": 52,
+        "is_correct": true
+      },
+      {
+        "id": 54,
+        "is_correct": true
+      },
+      {
+        "id": 78,
+        "is_correct": true
+      },
+      {
+        "id": 81,
+        "is_correct": true
+      },
+      {
+        "id": 60,
+        "is_correct": true
+      },
+      {
+        "id": 61,
+        "is_correct": true
+      },
+      {
+        "id": 82,
+        "is_correct": true
+      },
+      {
+        "id": 79,
+        "is_correct": false
+      },
+      {
+        "id": 42,
+        "is_correct": false
+      },
+      {
+        "id": 88,
+        "is_correct": true
+      }
+    ]
+  },
+  {
     "id": "exam_1790870347883",
     "date": "22:59:07 1/10/2026",
     "timestamp": "2026-10-01T15:59:07.885Z",

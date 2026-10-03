@@ -121,6 +121,11 @@
             "id": "Assignment_Operator_DeepCopy",
             "name": "Assignment Operator & Deep Copy",
             "description": "Toán tử gán operator= với 4 bước chuẩn mực: kiểm tra tự gán (this == &other), giải phóng vùng nhớ cũ (delete[]), cấp phát mới và sao chép sâu (Deep Copy), trả về *this."
+        },
+        {
+            "id": "Operator_Precedence_Associativity",
+            "name": "Operator Precedence, Associativity & Complex Expressions",
+            "description": "Độ ưu tiên và chiều kết hợp của các toán tử trong biểu thức phức hợp: phân biệt tiền tố vs hậu tố (*p++, *++p, ++*p, (*p)++), bẫy gán nối chuỗi ((a += b) += c vs a = (b += c)), độ ưu tiên dịch bit/xuất luồng so với bitwise và so sánh (cout << (a & b), a < b < c), cơ chế ngắt đoản mạch (short-circuit) của toán tử logic (&&, ||), và quy tắc thứ tự đánh giá biểu thức."
         }
     ],
     "difficulties": {

@@ -62,8 +62,8 @@ def test_single_cpp(cpp_code):
 
 def main():
     print("=" * 70)
-    print("  🛡️ TENDOU ARIS - C++ MOCK EXAM BANK FULL AUDITOR")
-    print("  Millennium Science School • C++ OOP Division")
+    print("  🛡️ C++ MOCK EXAM BANK FULL AUDITOR")
+    print("  System Diagnostic & Integrity Verification Engine")
     print("=" * 70)
 
     if not os.path.exists(QUESTION_CSV):
