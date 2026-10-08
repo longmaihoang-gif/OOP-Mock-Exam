@@ -1,198 +1,150 @@
 {
     "generation_settings": {
-        "default_model": "gemini-3.5-flash-lite",
-        "thinking_budget": 1024,
-        "batch_size": 5,
+        "default_model": "gemini-3.8-flash",
+        "thinking_budget": 8192,
+        "batch_size": 10,
         "cooldown_seconds": 3.5,
-        "code_ratio": 0.95,
+        "code_ratio": 0.0,
         "difficulty_weights": {
-            "Easy": 0.15,
+            "Easy": 0.2,
             "Medium": 0.35,
-            "Trap": 0.20,
-            "Smokescreen": 0.20,
-            "Boss": 0.10
+            "Trap": 0.25,
+            "Smokescreen": 0.1,
+            "Boss": 0.1
         },
         "question_type_weights": {
-            "Output": 0.45,
-            "Order_Trace": 0.10,
-            "Calculation": 0.15,
-            "Code_Completion": 0.10,
-            "Error_Check": 0.10,
-            "Concept_Apply": 0.10
+            "Concept_Apply": 0.3,
+            "Calculation": 0.25,
+            "Scenario_Analysis": 0.15,
+            "Error_Check": 0.1,
+            "Order_Trace": 0.1,
+            "Multi_Select": 0.1
         }
     },
     "topics": [
         {
-            "id": "Static_Storage_Scope",
-            "name": "Static Storage & Variable Scope",
-            "description": "Phạm vi biến toàn cục, biến cục bộ, toán tử phạm vi ::, và biến tĩnh static trong hàm (chỉ khởi tạo 1 lần duy nhất, giữ giá trị qua mọi lần gọi)."
+            "id": "OS_Overview_Classification",
+            "name": "Khái niệm, Định nghĩa & Phân loại Hệ Điều Hành (C1.1)",
+            "description": "Cấu trúc phân lớp hệ thống tính toán (Hardware, OS, System Programs, Application Programs, User). Hai chức năng cốt lõi: Máy mở rộng (Extended/Virtual Machine che giấu phần cứng) và Quản lý tài nguyên (Resource Manager phân bổ thời gian & không gian). Bốn góc độ quan sát định nghĩa HĐH: Người sử dụng, Người quản lý tài nguyên, Quan điểm kỹ thuật (tạo máy tính logic mới), và Quan điểm hệ thống (mô hình hóa đối thoại). Phân loại 6 hệ thống: Xử lý theo lô đơn chương (lãng phí CPU khi I/O), Xử lý theo lô đa chương (Multiprogramming - tối ưu CPU Utilization), Chia sẻ thời gian (Time-sharing - đa nhiệm tương tác), Thời gian thực (Hard RTOS trễ là thảm họa vs Soft RTOS), Hệ thống song song (đa xử lý), và Hệ thống phân tán (chia sẻ tài nguyên, an toàn, tăng tốc độ tính toán)."
         },
         {
-            "id": "IOManip_Formatting",
-            "name": "IOManip & Data Formatting",
-            "description": "Định dạng in với <iomanip>: setw (bùa 1 lần), setprecision (bùa vĩnh cửu, số chữ số có nghĩa vs số thực), fixed, showpoint, và kiểu liệt kê enum."
+            "id": "OS_Concepts_Resources_Shell",
+            "name": "Các khái niệm cơ bản, Tài nguyên hệ thống & Shell/Kernel (C1.2)",
+            "description": "Phân biệt Chương trình (thực thể thụ động trên đĩa) vs Tiến trình (thực thể động trong RAM). Khái niệm Luồng (Thread): Tiến trình đơn luồng (Heavyweight Process) vs Tiến trình đa luồng (Lightweight Process chia sẻ biến toàn cục). Khái niệm Tài nguyên: Tài nguyên Không gian vs Thời gian; Tài nguyên vật lý vs Tài nguyên logic vs Tài nguyên ảo (ví dụ Máy in ảo). Chuỗi phân cấp điều khiển User -> Shell -> Kernel -> Hardware. Bản chất của Shell (tiến trình đặc biệt giao tiếp dòng lệnh, nhận lệnh, phân tích và phát sinh tiến trình mới). Bản chất Kernel (hạt nhân cấp thấp nhất điều khiển phần cứng, chuyển đổi yêu cầu I/O thành tập lệnh CPU)."
         },
         {
-            "id": "Type_Casting_Modifiers",
-            "name": "Safe Type Casting (static_cast & const_cast)",
-            "description": "Các toán tử ép kiểu an toàn trong C++: static_cast (chuyển đổi kiểu dữ liệu hợp lệ lúc biên dịch), const_cast (cơ chế duy nhất cho phép tạm thời gỡ bỏ tính hằng const của biến hoặc con trỏ), và phân biệt ép kiểu ngầm định vs tường minh."
+            "id": "OS_Structures_Services_SystemCalls",
+            "name": "Cấu trúc Hệ Điều Hành, Dịch vụ & Lời gọi hệ thống (C1.3)",
+            "description": "8 thành phần hệ thống: Quản lý tiến trình, bộ nhớ chính, I/O, file, bộ nhớ lưu trữ, trao đổi dữ liệu phân tán, bảo vệ hệ thống, giao diện người dùng. Phân biệt 5 Dịch vụ chính yếu (Thi hành chương trình, Nhập xuất, Thao tác tập tin, Truyền thông, Phát hiện lỗi) vs 3 Dịch vụ phụ trợ (Cung cấp tài nguyên, Thống kê báo cáo, Bảo vệ). Bản chất Lời gọi hệ thống (System Call) làm cầu nối trung gian giữa chương trình người dùng và Kernel. 3 phương pháp truyền tham số cho System Call: qua thanh ghi CPU (Registers), qua khối nhớ trong RAM (Block/Table), và qua ngăn xếp (Stack)."
         },
         {
-            "id": "Reference_Lvalue_Rvalue",
-            "name": "References & Lvalue/Rvalue Rules",
-            "description": "Bản chất tham chiếu & (khế ước vĩnh cửu, cấm re-binding), phân biệt lvalue vs rvalue (cấm int& r = 20, cho phép const int& r = 20), hàm trả về tham chiếu ở vế trái phép gán."
+            "id": "OS_Properties_Design_Principles",
+            "name": "Tính chất cơ bản & 7 Nguyên tắc xây dựng Hệ Điều Hành (C1.4)",
+            "description": "5 tính chất cơ bản của HĐH: Độ tin cậy cao (chuẩn xác), An toàn (bảo vệ dữ liệu/chương trình), Hiệu quả (khai thác triệt để, duy trì đồng bộ), Tổng quát theo thời gian (tính kế thừa và thích nghi), Thuận tiện (dễ sử dụng, trợ giúp phong phú). 7 nguyên tắc xây dựng HĐH chuẩn giáo trình: 1. Nguyên tắc Modul; 2. Nguyên tắc tương đối trong định vị; 3. Nguyên tắc Macroprocessor; 4. Nguyên tắc khởi tạo trong cài đặt; 5. Nguyên tắc lặp chức năng; 6. Nguyên tắc giá trị chuẩn; 7. Nguyên tắc bảo vệ nhiều mức."
         },
         {
-            "id": "Pointers_Const_Modifiers",
-            "name": "Pointers & Const Triangle",
-            "description": "Con trỏ và tam giác quỷ const: phân biệt const int* p (con trỏ hằng), int* const p (hằng con trỏ), const int* const p, toán tử -> vs (*p)., con trỏ hàm (Function Pointer)."
+            "id": "Hardware_Protection_DualMode",
+            "name": "Kiến trúc phần cứng, Cơ chế bảo vệ & Chế độ kép Dual-Mode",
+            "description": "Cơ chế Ngắt (Interrupt): Ngắt phần cứng (IRQ ngoại vi) vs Ngắt phần mềm (Trap/Exception, System Call), Vector ngắt. Bảo vệ CPU bằng Bộ định thời (Timer) chống vòng lặp vô tận. Bảo vệ Bộ nhớ bằng cặp thanh ghi Base & Limit với điều kiện phần cứng bắt buộc: Base <= Addr < Base + Limit. Bảo vệ I/O bằng Lệnh đặc quyền (Privileged Instructions). Cơ chế DMA (Direct Memory Access) truyền khối dữ liệu tốc độ cao không qua CPU. Chế độ hoạt động kép (Dual-Mode): User Mode (Mode bit = 1) vs Kernel Mode (Mode bit = 0), quy trình bẫy ngắt Trap chuyển đổi mode khi gọi System Call."
         },
         {
-            "id": "Memory_Stack_Heap",
-            "name": "Memory Management (Stack vs Heap)",
-            "description": "Cấp phát tĩnh trên Stack vs cấp phát động trên Heap (new, delete, delete[] cho mảng), bẫy con trỏ lạc (Dangling Pointer) và rò rỉ bộ nhớ (Memory Leak)."
+            "id": "Kernel_Architectures_Models",
+            "name": "Các mô hình Kiến trúc Nhân Hệ Điều Hành",
+            "description": "So sánh ưu nhược điểm 5 kiến trúc: 1. Nhân nguyên khối (Monolithic Kernel - nhanh nhưng dễ sập toàn bộ); 2. Phân tầng (Layered Approach - dễ gỡ lỗi nhưng hiệu năng giảm do qua nhiều lớp); 3. Vi nhân (Microkernel - đẩy dịch vụ ra User Space, nhân chỉ giữ lại IPC, quản lý bộ nhớ và điều phối CPU cơ bản; an toàn, tin cậy cao nhưng overhead IPC); 4. Module nạp động (Loadable Kernel Modules - LKM chuẩn mực hiện đại); 5. Máy ảo (Virtual Machines: Type 1 Bare-metal Hypervisor vs Type 2 Hosted Hypervisor)."
         },
         {
-            "id": "Default_Arguments_Overloading",
-            "name": "Default Arguments & Function Overloading",
-            "description": "Đối số mặc định (quy tắc liên tục từ phải sang trái, cấm bỏ trống ở giữa), đa năng hóa hàm (phân biệt bằng tham số, cấm chỉ khác kiểu trả về, bẫy gọi mơ hồ Ambiguous)."
+            "id": "Process_Concepts_PCB_Lifecycle",
+            "name": "Tiến trình, Khối điều khiển PCB & 4 Sự kiện khởi tạo (C2.1)",
+            "description": "Tiến trình là dãy chuyển đổi trạng thái của hệ thống khi chạy chương trình. Trách nhiệm HĐH với Tiến trình hệ thống (mã kernel) và Tiến trình người dùng (mã user). 4 sự kiện khởi tạo tiến trình: Khởi động hệ thống (System initialization), Tiến trình thực thi gọi System Call, User yêu cầu tạo mới, Khởi động công việc xử lý lô (Batch job). Cấu trúc khối PCB (Process Control Block): PID, Process State, Program Counter (PC), CPU Registers, Scheduling Info, Memory Info (Base/Limit, Page Table), I/O Status. Chi phí chuyển ngữ cảnh (Context Switch Overhead) khi lưu/nạp PCB."
         },
         {
-            "id": "Constructors_Destructors_Lifecycle",
-            "name": "Constructors, Destructor & Lifecycle",
-            "description": "Bộ ba hàm dựng (Default, Parameterized, Copy Constructor Type(const Type&)), danh sách khởi tạo `:`, hàm hủy ~Destructor, vòng đời đối tượng trong khối lệnh `{}` (Block Scope) và mảng đối tượng."
+            "id": "Process_5_States_Transitions",
+            "name": "Sơ đồ 5 trạng thái Tiến trình & Các biến cố chuyển đổi (C2.1)",
+            "description": "Mô hình 5 trạng thái chuẩn: New (Mới tạo) -> Ready (Sẵn sàng trong RAM) -> Running (Đang chiếm CPU) -> Waiting/Blocked (Chờ I/O hoặc sự kiện) -> Terminated (Kết thúc). Các sự kiện kích hoạt chuyển trạng thái: Admitted (New -> Ready), Scheduler Dispatch (Ready -> Running), Interrupt / Hết Time Quantum (Running -> Ready), I/O Request / Wait Event (Running -> Waiting), I/O Finished / Event Occurs (Waiting -> Ready - CẤM chuyển thẳng lên Running), Exit (Running -> Terminated)."
         },
         {
-            "id": "Shallow_vs_Deep_Copy_Lifecycle",
-            "name": "Shallow Copy vs Deep Copy (Rule of Three)",
-            "description": "Bản chất sao chép nông (chỉ chép địa chỉ con trỏ) của constructor/toán tử gán mặc định khi lớp có cấp phát động (new[]); thảm họa con trỏ lạc (Dangling Pointer) và lỗi giải phóng trùng lặp (Double Free) khi hủy; giải pháp sao chép sâu (Deep Copy) qua Quy tắc bộ ba (Rule of Three: Destructor, Copy Constructor, Copy Assignment)."
+            "id": "Process_Queues_Scheduling_Criteria",
+            "name": "Hệ thống hàng đợi tiến trình & Tiêu chuẩn điều phối (C2.2)",
+            "description": "Mục đích điều phối: Tối đa hóa thời gian CPU. Hệ thống 3 hàng đợi: Job Queue (tập tất cả tiến trình trong hệ thống), Ready Queue (tập tiến trình trong RAM sẵn sàng chạy), Device Queue (tập tiến trình chờ thiết bị I/O cụ thể). Ba cấp độ điều phối: Long-term scheduler (chọn job nạp vào RAM, kiểm soát mức độ đa chương), Short-term CPU scheduler (chọn tiến trình cấp phát CPU, chạy cực nhanh tính bằng ms), Medium-term scheduler (hoán đổi Swapping giữa RAM và đĩa). Tiêu chuẩn đánh giá: CPU Utilization, Throughput, Turnaround Time (TAT = CT - AT), Waiting Time (WT = TAT - BT), Response Time."
         },
         {
-            "id": "Const_Static_Members",
-            "name": "Const & Static Class Members",
-            "description": "Phương thức const (chỉ đọc), đối tượng const chỉ được phép gọi hàm const; thuộc tính static (bắt buộc định nghĩa ngoài file), phương thức static không có con trỏ this."
+            "id": "CPU_Scheduling_Algorithms_Gantt",
+            "name": "Các thuật toán Lập lịch CPU & Biểu đồ Gantt (C2.2)",
+            "description": "Phân biệt Điều phối phi thụ quyền (Non-preemptive) vs Thụ quyền/Cướp quyền (Preemptive). 1. FCFS: Đến trước phục vụ trước, hiện tượng Convoy Effect (hiệu ứng đoàn tàu làm tăng WT trung bình). 2. SJF: Phi thụ quyền (Non-preemptive SJF) vs Thụ quyền (SRTF - Shortest Remaining Time First cho WT trung bình tối ưu nhất). 3. Round Robin (RR): Định mức thời gian Time Quantum q, hàng đợi FIFO, biến thiên khi q -> vô cùng (thành FCFS) và q -> 0 (nghẽn Context Switch). 4. Priority Scheduling: Độ ưu tiên, hiện tượng Đói tài nguyên (Starvation) và giải pháp Kỹ thuật làm già (Aging)."
         },
         {
-            "id": "Friend_Mechanisms",
-            "name": "Friend Functions & Friend Classes",
-            "description": "Cơ chế bạn bè (hàm friend, lớp friend) cấp quyền truy cập private; tính chất 1 chiều, không bắc cầu, không kế thừa; khai báo trước (Forward Declaration)."
+            "id": "Process_Operations_Tree_Fork",
+            "name": "Thao tác trên tiến trình & Cây tiến trình (C2.3)",
+            "description": "Tiến trình cha tạo tiến trình con qua lệnh gọi hệ thống fork() / CreateProcess(), tạo thành Cây tiến trình (Process Tree). Phân phối tài nguyên: con nhận từ HĐH hoặc chia sẻ từ cha (tất cả hoặc 1 phần). Thực thi: cha chạy đồng thời với con hoặc cha chờ con kết thúc qua wait(). Không gian địa chỉ: con là bản sao nhân bản của cha (fork trả về 0 cho con, trả về PID con cho cha), hoặc nạp chương trình mới qua exec(). Kết thúc tiến trình bằng exit(), tiến trình con mồ côi (Orphan) và tiến trình thây ma (Zombie khi cha chưa gọi wait)."
         },
         {
-            "id": "Composition_Has_A",
-            "name": "Composition Relationship (Has-A)",
-            "description": "Quan hệ chứa trong: thứ tự khởi tạo tuân theo thứ tự khai báo thành viên trong class; khi hủy thì lớp bao bọc hủy trước, các thành viên con hủy sau theo thứ tự ngược lại."
+            "id": "IPC_Cooperation_Mechanisms",
+            "name": "Hợp tác tiến trình & Truyền thông liên tiến trình IPC (C2.4)",
+            "description": "Phân loại tiến trình: Tuần tự (bắt đầu sau khi kia kết thúc) vs Song song (chạy gối đầu nhau). Tiến trình Độc lập (không ảnh hưởng lẫn nhau) vs Tiến trình Hợp tác (chia sẻ thông tin, tăng tốc tính toán, module hóa). Hai mô hình truyền thông liên tiến trình (IPC): 1. Vùng nhớ chia sẻ (Shared Memory - tốc độ cao, lập trình viên tự quản lý đồng bộ hóa); 2. Truyền thông điệp (Message Passing - gửi nhận tin qua send/receive, an toàn cho hệ phân tán, HĐH quản lý trung gian). Vấn đề Đồng bộ (Blocking / Synchronous vs Non-blocking / Asynchronous) và Bộ đệm (Zero capacity, Bounded capacity, Unbounded capacity)."
         },
         {
-            "id": "Explicit_Constructor_Conversion",
-            "name": "Explicit Constructor & Implicit Conversion",
-            "description": "Từ khóa explicit trước constructor 1 tham số nhằm ngăn chặn trình biên dịch tự động ép kiểu ngầm định khi truyền tham số hoặc khởi tạo mảng."
+            "id": "Critical_Resource_Section_Conditions",
+            "name": "Tài nguyên găng, Đoạn găng & 4 Điều kiện chuẩn mực (C2.5)",
+            "description": "Khái niệm Tài nguyên găng (Critical Resource): tài nguyên hạn chế khả năng dùng chung, cần đồng thời cho nhiều tiến trình (thiết bị vật lý hoặc dữ liệu chung). Điều kiện cạnh tranh (Race Condition): nhiều tiến trình cùng truy xuất làm sai lệch dữ liệu. Đoạn găng (Critical Section): đoạn code thao tác trên tài nguyên găng. Bốn điều kiện bắt buộc của giải pháp đúng: 1. Loại trừ tương hỗ (Mutual Exclusion - tối đa 1 tiến trình trong đoạn găng); 2. Tiến triển (Progress - chỉ tiến trình muốn vào mới tham gia quyết định, không hoãn vô hạn); 3. Chờ đợi có giới hạn (Bounded Waiting - không bị Starvation); 4. Độc lập phần cứng (không giả định tốc độ hay số lượng CPU)."
         },
         {
-            "id": "Operator_Rules_Restrictions",
-            "name": "Operator Overloading Rules & Banned Operators",
-            "description": "Quy tắc nạp chồng toán tử: chỉ nạp chồng toán tử có sẵn, giữ nguyên độ ưu tiên và số ngôi; danh sách toán tử bị cấm nạp chồng: dấu chấm ., con trỏ thành viên .*, toán tử ::, toán tử 3 ngôi ?:, sizeof, typeid."
+            "id": "Sync_Solutions_Peterson_TSL_Semaphore",
+            "name": "Các giải pháp đồng bộ hóa: Peterson, TSL & Semaphore (C2.5)",
+            "description": "Các giải pháp Chờ bận (Busy Waiting / Spinlock lãng phí CPU trên đơn nhân): Khóa cờ hiệu (Lock variable bị Race condition), Luân phiên nghiêm ngặt (Strict Alternation vi phạm Progress), Thuật toán Peterson 2 tiến trình (kết hợp turn và flag[2] thỏa mãn đầy đủ điều kiện), Lệnh phần cứng TSL (Test and Set Lock nguyên tử). Giải pháp Sleep & Wakeup với Semaphore: biến nguyên S truy cập qua wait(S) / P / down (giảm S, S < 0 thì block) và signal(S) / V / up (tăng S, S <= 0 thì wakeup). Ý nghĩa giá trị S âm (|S| = số tiến trình đang ngủ trong hàng đợi). Binary Semaphore (Mutex) vs Counting Semaphore. Cấu trúc Monitor cấp cao."
         },
         {
-            "id": "Member_vs_Friend_Operators",
-            "name": "Member vs Friend Operators (Commutative Property)",
-            "description": "So sánh Member vs Friend: toán tử bắt buộc là Member (=, [], (), ->), toán tử bắt buộc là Friend (<<, >>), tính giao hoán đối xứng phép toán (2 + a vs a + 2)."
-        },
-        {
-            "id": "Stream_Extraction_Insertion_Operators",
-            "name": "Stream I/O Operators (<< & >>)",
-            "description": "Đa năng hóa toán tử nhập/xuất stream (operator<< và operator>>): bắt buộc dùng hàm friend (do toán hạng trái là ostream/istream không thuộc class), truyền và trả về tham chiếu istream&/ostream& để cho phép gọi nối chuỗi liên hoàn (cin >> a >> b; cout << a << b;)."
-        },
-        {
-            "id": "Arithmetic_Relational_Operators",
-            "name": "Arithmetic & Relational Operators",
-            "description": "Toán tử số học (+, -, *, / trả về value), toán tử gán phức hợp (+=, -= trả về tham chiếu *this), toán tử so sánh (==, !=, <, > trả về bool; C++ không tự sinh operator==)."
-        },
-        {
-            "id": "Increment_Decrement_Operators",
-            "name": "Increment & Decrement Operators (++ / --)",
-            "description": "Toán tử tăng giảm: tiền tố ++a (không tham số, tăng trước, trả về tham chiếu Type&), hậu tố a++ (tham số bù nhìn int, lưu bản sao cũ, trả về giá trị Type cũ)."
-        },
-        {
-            "id": "Subscript_Functor_Conversion",
-            "name": "Subscript, Functor & Conversion Operators",
-            "description": "Toán tử chỉ số mảng operator[] (trả về tham chiếu int& để gán a[i] = val), toán tử gọi hàm operator() (Functor), toán tử chuyển kiểu tùy biến operator double() const (không ghi kiểu trả về)."
-        },
-        {
-            "id": "Assignment_Operator_DeepCopy",
-            "name": "Assignment Operator & Deep Copy",
-            "description": "Toán tử gán operator= với 4 bước chuẩn mực: kiểm tra tự gán (this == &other), giải phóng vùng nhớ cũ (delete[]), cấp phát mới và sao chép sâu (Deep Copy), trả về *this."
-        },
-        {
-            "id": "Operator_Precedence_Associativity",
-            "name": "Operator Precedence, Associativity & Complex Expressions",
-            "description": "Độ ưu tiên và chiều kết hợp của các toán tử trong biểu thức phức hợp: phân biệt tiền tố vs hậu tố (*p++, *++p, ++*p, (*p)++), bẫy gán nối chuỗi ((a += b) += c vs a = (b += c)), độ ưu tiên dịch bit/xuất luồng so với bitwise và so sánh (cout << (a & b), a < b < c), cơ chế ngắt đoản mạch (short-circuit) của toán tử logic (&&, ||), và quy tắc thứ tự đánh giá biểu thức."
+            "id": "Linux_CLI_Commands_Management",
+            "name": "Các lệnh cơ bản, Thao tác I/O & Quản lý Tiến trình trong Linux",
+            "description": "Thao tác tệp và thư mục: ls (các cờ -l, -a), cd, pwd, mkdir, rm (-rf), cp, mv, cat, head, tail. Quản lý tiến trình trong Linux: lệnh ps (xem PID, PPID với ps -ef, ps aux), pstree (cây tiến trình), top, lệnh kill và kill -9 (SIGKILL, SIGTERM), killall, ký tự & chạy tiến trình nền (background). Cơ chế chuyển hướng luồng I/O: ghi đè (>), ghi nối tiếp (>>), đầu vào (<), 2> (chuyển hướng lỗi), và đường ống pipe (|) kết hợp lệnh grep, wc. Phân quyền tệp cơ bản với chmod (rwx, mã bát phân 755, 644, 777), tài khoản sudo."
         }
     ],
     "difficulties": {
         "Easy": {
             "name": "Cơ bản",
-            "instruction": "Kiểm tra trực tiếp cú pháp, định nghĩa và nguyên lý cốt lõi của chủ đề được chỉ định. Mã nguồn ngắn gọn (10 - 18 dòng), luồng chạy thẳng thắn, đơn giản, tường minh, không đánh đố hay gài bẫy."
+            "instruction": "Kiểm tra trực tiếp định nghĩa, thuật ngữ chuẩn mực và các đặc điểm cốt lõi trong slide bài giảng. Câu hỏi rõ ràng, tường minh, đáp án phân biệt rạch ròi, không đánh đố."
         },
         "Medium": {
-            "name": "Vận dụng",
-            "instruction": "Đòi hỏi vận dụng kết hợp 2-3 khái niệm hoặc xử lý logic đa bước trong chủ đề được chọn. Mã nguồn vừa phải (18 - 28 dòng), yêu cầu người thi hiểu rõ luồng điều khiển và quy tắc ngôn ngữ chuẩn."
+            "name": "Thông hiểu",
+            "instruction": "Đòi hỏi hiểu rõ cơ chế vận hành, so sánh giữa 2 khái niệm (ví dụ: Hard vs Soft RTOS, Đa chương vs Chia sẻ thời gian, Preemptive vs Non-preemptive, Shared Memory vs Message Passing), hoặc tính toán đơn bước."
         },
         "Trap": {
             "name": "Cạm bẫy",
-            "instruction": "Mã nguồn ngắn (15 - 25 dòng) nhưng gài cạm bẫy logic tinh vi, đánh trúng các điểm hiểu nhầm phổ biến, trường hợp biên (edge cases), ngoại lệ cú pháp hoặc quy tắc ngầm định của chủ đề. Bề ngoài trông tưởng hiển nhiên nhưng đáp án thực tế lại khác."
+            "instruction": "Gài bẫy câu chữ tinh vi, đánh trúng các điểm sinh viên hay hiểu nhầm (ví dụ: nhầm lẫn giữa Waiting và Ready; nhầm lẫn dấu so sánh Base <= Addr < Base + Limit; giá trị Semaphore âm; vi phạm Progress trong Strict Alternation). Phương án nhiễu nghe rất hợp lý nhưng sai về bản chất."
         },
         "Smokescreen": {
-            "name": "Tung hỏa mù",
-            "instruction": "Mã nguồn dài (30 - 45 dòng), có cấu trúc phân tầng, nhiều hàm/khối lệnh hoặc biến phụ nhằm phân tán sự chú ý và làm rối mắt người thi. Tuy nhiên, mấu chốt logic để tìm ra đáp án chỉ xoay quanh một quy tắc trọng tâm duy nhất của chủ đề."
+            "name": "Tình huống phức tạp",
+            "instruction": "Đưa ra kịch bản tình huống thực tế của hệ điều hành với nhiều chi tiết tiến trình hoạt động, đòi hỏi người thi phải bóc tách dữ liệu để tìm ra bản chất của quy tắc cần áp dụng."
         },
         "Boss": {
-            "name": "Trùm cuối",
-            "instruction": "Thử thách đỉnh cao kết hợp chuyên sâu toàn diện: đòi hỏi phân tích vòng đời, quản lý bộ nhớ, truy vết trạng thái biến thiên phức tạp hoặc các ràng buộc cú pháp nghiêm ngặt nhất của chủ đề. Mã nguồn chặt chẽ, tư duy phân tích đa tầng."
+            "name": "Vận dụng cao",
+            "instruction": "Bài toán tính toán đa bước (vẽ biểu đồ Gantt tính thời gian chờ trung bình, phân tích chuỗi thao tác wait/signal phức hợp) hoặc phân tích tính đúng đắn của giải pháp đồng bộ hóa."
         }
     },
     "question_types": {
-        "Output": {
-            "name": "Dự đoán Output",
-            "instruction": "Yêu cầu theo dõi luồng thực thi và xác định chính xác chuỗi kết quả in ra màn hình console khi chạy chương trình."
+        "Concept_Apply": {
+            "name": "Vận dụng khái niệm",
+            "instruction": "Hỏi về định nghĩa chuẩn, vai trò, thành phần cấu trúc hoặc tính chất cốt lõi của hệ điều hành theo đúng giáo trình."
+        },
+        "Calculation": {
+            "name": "Tính toán chỉ số HĐH",
+            "instruction": "Yêu cầu tính toán con số cụ thể: thời gian chờ (WT), thời gian lưu lại (TAT) trong lập lịch CPU; giá trị của Semaphore và số tiến trình bị khóa; địa chỉ bộ nhớ hợp lệ theo Base/Limit."
+        },
+        "Scenario_Analysis": {
+            "name": "Phân tích tình huống",
+            "instruction": "Đưa ra tình huống cụ thể (khi Quantum q thay đổi, khi tiến trình gọi fork(), khi sự kiện I/O kết thúc, khi tiến trình rơi vào vòng lặp vô tận) và hỏi hệ quả hoặc hành vi của HĐH."
         },
         "Order_Trace": {
             "name": "Truy vết thứ tự",
-            "instruction": "Yêu cầu xác định chính xác trình tự thực hiện (thời điểm gọi, thứ tự trước/sau, vào/ra) của các hàm, khối lệnh hoặc sự kiện trong vòng đời thực thi của chương trình."
-        },
-        "Calculation": {
-            "name": "Tính giá trị của biến",
-            "instruction": "Yêu cầu tính toán và xác định chính xác giá trị số học hoặc trạng thái cuối cùng của một hoặc nhiều biến / thuộc tính đối tượng sau khi thực thi các biểu thức, phép gán, toán tử nạp chồng hoặc lời gọi hàm."
+            "instruction": "Yêu cầu xác định chính xác trình tự thực hiện: thứ tự cấp CPU theo thuật toán, thứ tự chuyển trạng thái của tiến trình, hoặc thứ tự thực thi của tiến trình cha/con."
         },
         "Error_Check": {
-            "name": "Kiểm tra tính hợp lệ & Lỗi",
-            "instruction": "Yêu cầu thẩm định xem đoạn mã có hợp lệ hay không; nhận diện chính xác trạng thái lỗi biên dịch (Compile Error), lỗi thời gian chạy (Runtime Error) hoặc thực thi bình thường."
+            "name": "Kiểm tra mệnh đề ĐÚNG / SAI",
+            "instruction": "Đưa ra 4 phát biểu và yêu cầu chọn mệnh đề ĐÚNG NHẤT hoặc mệnh đề SAI về một cơ chế của hệ điều hành."
         },
-        "Concept_Apply": {
-            "name": "Vận dụng khái niệm",
-            "instruction": "Đánh giá mức độ am hiểu bản chất lý thuyết, phân tích ưu/nhược điểm thiết kế, tính đúng đắn của phát biểu hoặc quy tắc chuẩn mực của ngôn ngữ liên quan đến chủ đề."
-        },
-        "Code_Completion": {
-            "name": "Điền khuyết mã nguồn",
-            "instruction": "Cho một chương trình C++ bị khuyết một biểu thức, cú pháp hoặc lời gọi then chốt tại vị trí ghi chú '// [ĐIỀN CODE TẠI ĐÂY]'. Yêu cầu chọn chính xác đoạn mã cần điền để chương trình biên dịch thành công, đạt mục tiêu thiết kế hoặc cho ra kết quả mong muốn."
+        "Multi_Select": {
+            "name": "Chọn nhiều đáp án đúng",
+            "instruction": "Câu hỏi trắc nghiệm yêu cầu chọn tất cả các ý đúng. Trường 'question_type' trả về BẮT BUỘC có định dạng 'Multi_Select:K' (K là số lượng ý đúng từ 0 đến tổng số lựa chọn). K đáp án ĐÚNG BẮT BUỘC nằm liên tiếp ở các trường đầu tiên từ 'opt1' đến 'optK'. Các trường còn lại là các phương án gây nhiễu."
         }
     },
-    "system_instruction": "Bạn là Chuyên gia Khảo thí và Giảng viên Cao cấp về C++ và Lập trình Hướng đối tượng (OOP) trình độ Đại học.\n\nQUY TẮC BẤT BIẾN:\n1. ĐÁP ÁN ĐÚNG: Cột 'opt1' BẮT BUỘC là đáp án chính xác nhất 100%! 'opt2' đến 'opt5' là các phương án gây nhiễu hợp lý (Distractors). Phía client sẽ tự xáo trộn ngẫu nhiên.\n2. SỐ LỰA CHỌN: Có từ 3 đến 5 phương án (tối thiểu opt1..opt3, nếu chỉ có 3 hoặc 4 phương án thì các opt còn lại để chuỗi rỗng \"\"). Phương án nhiễu có thể gồm: 'Lỗi biên dịch', 'Lỗi thời gian chạy (Runtime Error)', 'Đáp án khác', hoặc 'Giá trị rác'.\n3. CHUẨN CODE C++: Viết chuẩn C++11/C++14 có hàm main() hoàn chỉnh, thụt lề 4 spaces, không dùng ký tự đặc biệt.\n4. RANH GIỚI KIẾN THỨC BẮT BUỘC: CHỈ tạo câu hỏi bám sát 100% vào nội dung và phạm vi mô tả của chủ đề (topic) được giao trong từng slot. Tuyệt đối KHÔNG tự ý đưa vào các kỹ thuật, cú pháp hay kiến thức nằm ngoài phạm vi mô tả của chủ đề đó.\n5. ĐỘ CHÍNH XÁC: Tuân thủ chính xác từng hướng dẫn cụ thể của từng slot câu hỏi trong user prompt.\n6. GIẢI THÍCH: Trường 'explanation' nêu rõ bản chất cơ chế bộ nhớ, quy tắc ngôn ngữ hoặc luồng thực thi đứng sau đáp án đúng của chủ đề đó.\n7. QUY TẮC LỖI BIÊN DỊCH: Nếu câu hỏi có phương án liên quan tới lỗi biên dịch (hoặc là đáp án đúng, hoặc phương án nhiễu), nếu không phải dạng bài trắc nghiệm chọn dòng lỗi cụ thể, thì phương án BẮT BUỘC chỉ ghi thẳng chữ: 'Lỗi biên dịch' (và không nói gì thêm, không giải thích lý do trong phương án để tránh lộ đề). Toàn bộ phân tích lý do lỗi ghi vào trường 'explanation'.\n8. QUY TẮC ĐIỀN KHUYẾT MÃ NGUỒN (Code_Completion): Bắt buộc trong mã nguồn C++ phải có chính xác một vị trí đánh dấu là '// [ĐIỀN CODE TẠI ĐÂY]'. Đoạn code trong 'opt1' (đáp án đúng) khi thay thế vào vị trí này phải tạo thành một chương trình C++ hoàn chỉnh, biên dịch thành công 100% bằng g++ -std=c++11 và thực thi đúng logic yêu cầu. Các phương án 'opt2'..'opt5' là các đoạn code sai cú pháp, nhầm lẫn thứ tự tham số, thiếu từ khóa hoặc vi phạm quy tắc OOP.",
-    "response_format_schema": {
-        "type": "array",
-        "description": "Danh sách các câu hỏi trắc nghiệm C++ theo đúng từng blueprint được giao",
-        "items": {
-            "topic": "Tên chủ đề từ danh sách topics",
-            "difficulty": "Easy | Medium | Trap | Smokescreen | Boss",
-            "question_type": "Output | Order_Trace | Calculation | Error_Check | Concept_Apply | Code_Completion",
-            "has_code": true,
-            "question": "Nội dung câu hỏi bằng tiếng Việt rõ ràng, mạch lạc",
-            "code_content": "Mã nguồn C++ hoàn chỉnh nếu has_code = true, nếu has_code = false thì để chuỗi rỗng",
-            "opt1": "Đáp án ĐÚNG tuyệt đối",
-            "opt2": "Phương án gây nhiễu 1",
-            "opt3": "Phương án gây nhiễu 2",
-            "opt4": "Phương án gây nhiễu 3 (hoặc rỗng)",
-            "opt5": "Phương án gây nhiễu 4 (hoặc rỗng)",
-            "explanation": "Lời giải thích sâu sắc về bản chất OOP C++ cho câu hỏi này"
-        }
-    }
+    "system_instruction": "Bạn là Chuyên gia Khảo thí và Giảng viên Cao cấp môn NGUYÊN LÝ HỆ ĐIỀU HÀNH (Operating Systems) trình độ Đại học.\n\nQUY TẮC BẤT BIẾN:\n1. ĐÁP ÁN ĐÚNG: Đối với câu trắc nghiệm chọn đơn thông thường, cột 'opt1' BẮT BUỘC là đáp án chính xác nhất 100%! 'opt2' đến 'opt5' là các phương án gây nhiễu hợp lý (Distractors). Phía client sẽ tự xáo trộn ngẫu nhiên.\n2. SỐ LỰA CHỌN: Luôn cung cấp 4 phương án lựa chọn (opt1..opt4), trường opt5 để chuỗi rỗng \"\".\n3. KHÔNG BẮT BUỘC CODE C++: Vì đây là môn Nguyên Lý Hệ Điều Hành, trường 'has_code' thường là false và 'code_content' để chuỗi rỗng \"\". Chỉ khi câu hỏi liên quan đến mã giả giải thuật (như Thuật toán Peterson, Semaphore wait/signal, lệnh fork/wait trong C) thì 'has_code' mới là true.\n4. RANH GIỚI KIẾN THỨC BẮT BUỘC: CHỈ tạo câu hỏi bám sát 100% vào nội dung và phạm vi mô tả của chủ đề (topic) được giao trong từng slot, bám sát các khái niệm trong 9 file giáo trình của trường (C1.1 đến C2.5).\n5. ĐỘ CHÍNH XÁC: Tuân thủ chính xác từng hướng dẫn cụ thể của từng slot câu hỏi trong user prompt.\n6. GIẢI THÍCH: Trường 'explanation' nêu rõ bản chất cơ chế của Hệ Điều Hành, chỉ rõ tại sao opt1 đúng và phân tích cạm bẫy của các phương án gây nhiễu.\n7. QUY TẮC CÂU HỎI CHỌN NHIỀU (Multi_Select:K): Nếu câu hỏi có dạng Multi_Select, trường 'question_type' BẮT BUỘC trả về định dạng 'Multi_Select:K' (trong đó K là số lượng ý đúng). K đáp án ĐÚNG BẮT BUỘC nằm liên tiếp ở các trường đầu tiên từ 'opt1' đến 'optK'. Nội dung câu hỏi ghi rõ '(Chọn tất cả đáp án đúng)'."
 }

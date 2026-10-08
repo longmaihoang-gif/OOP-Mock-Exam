@@ -13,7 +13,8 @@ const STATE = {
     timeRemainingSeconds: 0,
     totalDurationSeconds: 0,
     strictForward: true,
-    codeCache: {}
+    codeCache: {},
+    tempMultiSelections: {} // index -> Set of chosen option indices
 };
 
 // DOM ELEMENTS
@@ -60,6 +61,7 @@ const DOM = {
     codeBlock: document.getElementById('code-block'),
     optionsGrid: document.getElementById('options-grid'),
     explanationBox: document.getElementById('explanation-box'),
+    expHeading: document.getElementById('exp-heading'),
     expContent: document.getElementById('exp-content'),
 
     btnPrevQuestion: document.getElementById('btn-prev-question'),
@@ -366,7 +368,15 @@ function parseCsvToQuestions(csvText) {
             explanation = row[10] || 'Chưa có giải thích.';
         }
 
-        // Thu thập các options (opt1 luôn là đúng, opt2..opt5 là các phương án)
+        let isMulti = false;
+        let correctCount = 1;
+        const multiMatch = (question_type || '').match(/^(?:Multi_Select|Multi_Choice|Multi)[:_]?(\d+)?$/i);
+        if (multiMatch) {
+            isMulti = true;
+            correctCount = multiMatch[1] !== undefined ? parseInt(multiMatch[1], 10) : 2;
+        }
+
+        // Thu thập các options (Nếu isMulti thì correctCount options đầu tiên là đúng, ngược lại opt1 luôn đúng)
         const rawOptions = [];
         for (let optIdx = optStartIndex; optIdx < optStartIndex + 5; optIdx++) {
             if (row[optIdx] && row[optIdx].trim().length > 0) {
@@ -382,13 +392,25 @@ function parseCsvToQuestions(csvText) {
             topic,
             difficulty,
             question_type,
+            isMulti,
+            correctCount: Math.min(correctCount, rawOptions.length),
             question,
             code_file,
-            rawOptions, // Trong đó rawOptions[0] LUÔN là đáp án đúng!
+            rawOptions, // Trong đó correctCount phần tử đầu tiên LUÔN là đáp án đúng!
             explanation
         });
     }
     return questions;
+}
+
+// Xáo trộn các phương án (Hỗ trợ câu đơn opt1 đúng và câu chọn nhiều correctCount ý đầu đúng)
+function prepareShuffledOptions(rawOptions, correctCount = 1) {
+    const items = rawOptions.map((text, idx) => ({
+        text,
+        isCorrect: (idx < correctCount)
+    }));
+    shuffleArray(items);
+    return items;
 }
 
 // ==========================================================================
@@ -420,6 +442,7 @@ function startSession(mode) {
     STATE.mode = mode;
     STATE.currentIndex = 0;
     STATE.userAnswers = {};
+    STATE.tempMultiSelections = {};
     clearInterval(STATE.timerInterval);
 
     // Chuẩn bị danh sách câu hỏi
@@ -499,7 +522,7 @@ function startSession(mode) {
 
     // Chuẩn bị các phương án xáo trộn cho từng câu hỏi & Tải trước (Prefetch) mã nguồn
     STATE.currentExamQuestions.forEach(q => {
-        q.shuffledOptions = prepareShuffledOptions(q.rawOptions);
+        q.shuffledOptions = prepareShuffledOptions(q.rawOptions, q.isMulti ? q.correctCount : 1);
         if (q.code_file && q.code_file.trim()) {
             prefetchCodeFile(q.code_file.trim());
         }
@@ -508,17 +531,6 @@ function startSession(mode) {
     // Chuyển màn hình
     switchScreen('EXAM_ARENA');
     renderCurrentQuestion();
-}
-
-// Xáo trộn các phương án (opt1 là đáp án đúng)
-function prepareShuffledOptions(rawOptions) {
-    // rawOptions[0] là đáp án đúng!
-    const items = rawOptions.map((text, idx) => ({
-        text,
-        isCorrect: (idx === 0)
-    }));
-    shuffleArray(items);
-    return items;
 }
 
 function switchScreen(screenName) {
@@ -572,7 +584,15 @@ async function renderCurrentQuestion() {
 
     // Cập nhật Dạng bài (question_type)
     if (DOM.typePill) {
-        DOM.typePill.textContent = q.question_type || (q.code_file ? 'Code' : 'Lý Thuyết');
+        if (q.isMulti) {
+            DOM.typePill.textContent = '☑️ CHỌN NHIỀU';
+            DOM.typePill.style.borderColor = '#A855F7';
+            DOM.typePill.style.color = '#C084FC';
+        } else {
+            DOM.typePill.textContent = q.question_type || (q.code_file ? 'Code' : 'Lý Thuyết');
+            DOM.typePill.style.borderColor = '';
+            DOM.typePill.style.color = '';
+        }
     }
 
     DOM.currentQIndex.textContent = STATE.currentIndex + 1;
@@ -596,40 +616,114 @@ async function renderCurrentQuestion() {
 
     // Render danh sách Options (3 đến 5 đáp án)
     DOM.optionsGrid.innerHTML = '';
+    DOM.optionsGrid.classList.toggle('is-multi-select', !!q.isMulti);
     const alphabet = ['A', 'B', 'C', 'D', 'E'];
     const currentSavedAnswer = STATE.userAnswers[STATE.currentIndex];
 
+    // Đối với câu Chọn nhiều (Multi-Select): Khởi tạo tập chọn tạm thời nếu chưa có
+    if (q.isMulti && !STATE.tempMultiSelections[STATE.currentIndex]) {
+        if (currentSavedAnswer && currentSavedAnswer.chosenIndices) {
+            STATE.tempMultiSelections[STATE.currentIndex] = new Set(currentSavedAnswer.chosenIndices);
+        } else {
+            STATE.tempMultiSelections[STATE.currentIndex] = new Set();
+        }
+    }
+    const currentTempSet = q.isMulti ? (STATE.tempMultiSelections[STATE.currentIndex] || new Set()) : null;
+
     q.shuffledOptions.forEach((opt, idx) => {
         const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.innerHTML = `
-            <span class="option-key">${alphabet[idx]}</span>
-            <span class="option-text">${escapeHtml(opt.text)}</span>
-        `;
+        btn.className = `option-btn ${q.isMulti ? 'multi-option' : ''}`;
 
-        // Nếu đã từng chọn câu này trước đó
-        if (currentSavedAnswer && currentSavedAnswer.chosenIndex === idx) {
+        // Kiểm tra xem option này có đang được chọn không
+        let isChosen = false;
+        if (q.isMulti) {
+            if (currentSavedAnswer && currentSavedAnswer.chosenIndices) {
+                isChosen = currentSavedAnswer.chosenIndices.includes(idx);
+            } else if (currentTempSet) {
+                isChosen = currentTempSet.has(idx);
+            }
+        } else {
+            isChosen = (currentSavedAnswer && currentSavedAnswer.chosenIndex === idx);
+        }
+
+        if (isChosen) {
             btn.classList.add('selected');
         }
 
-        // Trong chế độ STUDY MODE & MISTAKE_STUDY, nếu đã trả lời thì hiện luôn đúng/sai
+        let tagHtml = '';
+
+        // Trong chế độ STUDY MODE & MISTAKE_STUDY, nếu đã trả lời thì hiện đánh giá
         if ((STATE.mode === 'STUDY' || STATE.mode === 'MISTAKE_STUDY') && currentSavedAnswer) {
             btn.disabled = true;
-            if (opt.isCorrect) {
-                btn.classList.add('correct-reveal');
-            } else if (currentSavedAnswer.chosenIndex === idx) {
-                btn.classList.add('wrong-reveal');
+            if (q.isMulti) {
+                if (opt.isCorrect && isChosen) {
+                    btn.classList.add('correct-reveal');
+                    tagHtml = `<span class="multi-tag tag-correct">✓ ĐÚNG</span>`;
+                } else if (opt.isCorrect && !isChosen) {
+                    btn.classList.add('missed-reveal');
+                    tagHtml = `<span class="multi-tag tag-missed">⚠️ BỎ SÓT</span>`;
+                } else if (!opt.isCorrect && isChosen) {
+                    btn.classList.add('wrong-reveal');
+                    tagHtml = `<span class="multi-tag tag-wrong">✗ DÍNH BẪY</span>`;
+                } else {
+                    btn.classList.add('dimmed-reveal');
+                }
+            } else {
+                if (opt.isCorrect) {
+                    btn.classList.add('correct-reveal');
+                } else if (isChosen) {
+                    btn.classList.add('wrong-reveal');
+                }
             }
         } else {
-            btn.addEventListener('click', () => handleOptionClick(idx));
+            if (q.isMulti) {
+                btn.addEventListener('click', () => handleMultiOptionToggle(idx));
+            } else {
+                btn.addEventListener('click', () => handleOptionClick(idx));
+            }
         }
+
+        btn.innerHTML = `
+            ${q.isMulti ? `<span class="option-checkbox ${isChosen ? 'checked' : ''}"></span>` : ''}
+            <span class="option-key ${q.isMulti ? 'checkbox-key' : ''}">${alphabet[idx]}</span>
+            <span class="option-text">${escapeHtml(opt.text)}</span>
+            ${tagHtml}
+        `;
 
         DOM.optionsGrid.appendChild(btn);
     });
 
+    // Thêm nút "XÁC NHẬN CHỌN" cho câu chọn nhiều trong STUDY / MISTAKE_STUDY nếu chưa nộp
+    if (q.isMulti && (STATE.mode === 'STUDY' || STATE.mode === 'MISTAKE_STUDY') && !currentSavedAnswer) {
+        const confirmWrap = document.createElement('div');
+        confirmWrap.className = 'multi-confirm-wrap';
+        confirmWrap.innerHTML = `
+            <button class="btn-primary btn-confirm-multi" id="btn-confirm-multi">
+                XÁC NHẬN CHỌN ☑️
+            </button>
+        `;
+        confirmWrap.querySelector('#btn-confirm-multi').addEventListener('click', handleConfirmMulti);
+        DOM.optionsGrid.appendChild(confirmWrap);
+    }
+
     // Giải thích (Chỉ hiện trong Study Mode & MISTAKE_STUDY khi đã trả lời)
     if ((STATE.mode === 'STUDY' || STATE.mode === 'MISTAKE_STUDY') && currentSavedAnswer) {
         DOM.explanationBox.classList.remove('hidden');
+        if (q.isMulti && DOM.expHeading) {
+            const { chosenIndices, isCorrect } = currentSavedAnswer;
+            const correctTotal = q.shuffledOptions.filter(o => o.isCorrect).length;
+            const truePositive = (chosenIndices || []).filter(i => q.shuffledOptions[i].isCorrect).length;
+            const falsePositive = (chosenIndices || []).filter(i => !q.shuffledOptions[i].isCorrect).length;
+            const missed = correctTotal - truePositive;
+
+            if (isCorrect) {
+                DOM.expHeading.innerHTML = `<span style="color: #10B981;">🎉 HOÀN HẢO (+1đ):</span> ${correctTotal === 0 ? 'Bạn đã nhận diện chính xác: Không có đáp án nào đúng trong câu này!' : `Bạn đã chọn chính xác toàn bộ ${correctTotal} ý đúng!`}`;
+            } else {
+                DOM.expHeading.innerHTML = `<span style="color: #F59E0B;">⚠️ CHƯA HOÀN HẢO (0đ):</span> ${correctTotal === 0 ? `Câu này KHÔNG có đáp án nào đúng (bạn đã dính bẫy ${falsePositive} ý sai)` : (chosenIndices.length === 0 ? `Bạn không chọn ý nào trong khi câu hỏi có ${correctTotal} ý đúng (bỏ sót cả ${correctTotal} ý)` : `Chọn đúng ${truePositive}/${correctTotal} ý${missed > 0 ? ` (bỏ sót ${missed})` : ''}${falsePositive > 0 ? ` (dính bẫy ${falsePositive})` : ''}`)} • Đã lưu vào hàng chờ câu sai!`;
+            }
+        } else if (DOM.expHeading) {
+            DOM.expHeading.textContent = 'BÍ KÍP GIẢI MÃ CẠM BẪY';
+        }
         DOM.expContent.textContent = q.explanation;
     } else {
         DOM.explanationBox.classList.add('hidden');
@@ -763,6 +857,99 @@ function handleOptionClick(optIndex) {
     updateFooterButtons();
 }
 
+// Xử lý khi click toggle một đáp án trong câu Chọn nhiều (Multi-Select)
+function handleMultiOptionToggle(optIndex) {
+    const q = STATE.currentExamQuestions[STATE.currentIndex];
+    if (!STATE.tempMultiSelections[STATE.currentIndex]) {
+        STATE.tempMultiSelections[STATE.currentIndex] = new Set();
+    }
+    const tempSet = STATE.tempMultiSelections[STATE.currentIndex];
+
+    if (tempSet.has(optIndex)) {
+        tempSet.delete(optIndex);
+    } else {
+        tempSet.add(optIndex);
+    }
+
+    // Cập nhật ngay class và checkbox trực tiếp trên nút
+    const allButtons = DOM.optionsGrid.querySelectorAll('.option-btn');
+    const targetBtn = allButtons[optIndex];
+    if (targetBtn) {
+        const isSelected = tempSet.has(optIndex);
+        targetBtn.classList.toggle('selected', isSelected);
+        const chk = targetBtn.querySelector('.option-checkbox');
+        if (chk) chk.classList.toggle('checked', isSelected);
+    }
+
+    // Trong EXAM MODE: Tự động lưu lựa chọn hiện tại vào userAnswers
+    if (STATE.mode === 'EXAM') {
+        saveCurrentExamMultiAnswer();
+    }
+
+    updateFooterButtons();
+}
+
+// Lưu câu trả lời của câu chọn nhiều trong phòng thi thật (K >= 0)
+function saveCurrentExamMultiAnswer() {
+    const q = STATE.currentExamQuestions[STATE.currentIndex];
+    const alphabet = ['A', 'B', 'C', 'D', 'E'];
+    const chosenIndices = Array.from(STATE.tempMultiSelections[STATE.currentIndex] || []).sort((a, b) => a - b);
+    const correctIndices = q.shuffledOptions.map((o, i) => o.isCorrect ? i : null).filter(i => i !== null);
+
+    const isCorrect = (chosenIndices.length === correctIndices.length) &&
+                      chosenIndices.every(i => correctIndices.includes(i));
+
+    STATE.userAnswers[STATE.currentIndex] = {
+        isMulti: true,
+        chosenIndices,
+        chosenIndex: chosenIndices[0] !== undefined ? chosenIndices[0] : -1,
+        isCorrect,
+        chosenText: chosenIndices.length > 0
+            ? chosenIndices.map(i => `${alphabet[i]}. ${q.shuffledOptions[i].text}`).join(' | ')
+            : 'Không chọn ý nào (0 ý)',
+        correctText: correctIndices.length > 0
+            ? correctIndices.map(i => `${alphabet[i]}. ${q.shuffledOptions[i].text}`).join(' | ')
+            : 'Không có đáp án nào đúng'
+    };
+}
+
+// Xác nhận câu trả lời chọn nhiều trong STUDY MODE & MISTAKE_STUDY
+function handleConfirmMulti() {
+    const q = STATE.currentExamQuestions[STATE.currentIndex];
+    const alphabet = ['A', 'B', 'C', 'D', 'E'];
+    const chosenIndices = Array.from(STATE.tempMultiSelections[STATE.currentIndex] || []).sort((a, b) => a - b);
+    const correctIndices = q.shuffledOptions.map((o, i) => o.isCorrect ? i : null).filter(i => i !== null);
+
+    const isCorrect = (chosenIndices.length === correctIndices.length) &&
+                      chosenIndices.every(i => correctIndices.includes(i));
+
+    const isFirstAttempt = !STATE.userAnswers[STATE.currentIndex];
+
+    STATE.userAnswers[STATE.currentIndex] = {
+        isMulti: true,
+        chosenIndices,
+        chosenIndex: chosenIndices[0] !== undefined ? chosenIndices[0] : -1,
+        isCorrect,
+        chosenText: chosenIndices.length > 0
+            ? chosenIndices.map(i => `${alphabet[i]}. ${q.shuffledOptions[i].text}`).join(' | ')
+            : 'Không chọn ý nào (0 ý)',
+        correctText: correctIndices.length > 0
+            ? correctIndices.map(i => `${alphabet[i]}. ${q.shuffledOptions[i].text}`).join(' | ')
+            : 'Không có đáp án nào đúng'
+    };
+
+    if (isFirstAttempt) {
+        updateQuestionMastery(q.id, isCorrect);
+    }
+
+    if (STATE.mode === 'MISTAKE_STUDY' && isCorrect) {
+        removeMistakeQuestionId(q.id);
+    }
+
+    renderCurrentQuestion();
+    updateFooterButtons();
+}
+
 function updateFooterButtons() {
     const isFirst = STATE.currentIndex === 0;
     const isLast = STATE.currentIndex === STATE.currentExamQuestions.length - 1;
@@ -792,12 +979,18 @@ function updateFooterButtons() {
 }
 
 function navigateQuestion(direction) {
-    // Nếu ở chế độ 1 chiều và đi tiếp mà chưa chọn đáp án: cảnh báo xác nhận
+    // Nếu ở chế độ 1 chiều và đi tiếp mà chưa chọn đáp án:
     if (direction > 0 && STATE.strictForward && STATE.mode === 'EXAM') {
-        const hasAnswered = STATE.userAnswers[STATE.currentIndex];
-        if (!hasAnswered) {
-            if (!confirm(`${getUserLabel()} chưa chọn đáp án cho câu này! Vì đang thi ở Chế độ 1 Chiều nên sẽ không thể quay lại câu này được nữa. ${getUserLabel()} có chắc chắn muốn bỏ qua không?`)) {
-                return;
+        const q = STATE.currentExamQuestions[STATE.currentIndex];
+        if (q.isMulti) {
+            // Đối với câu Chọn nhiều trong chế độ 1 chiều: Nếu chưa tick ô nào, tự động ghi nhận là "Không chọn ý nào (0 ý)" thay vì hỏi bỏ qua
+            saveCurrentExamMultiAnswer();
+        } else {
+            const hasAnswered = STATE.userAnswers[STATE.currentIndex];
+            if (!hasAnswered) {
+                if (!confirm(`${getUserLabel()} chưa chọn đáp án cho câu này! Vì đang thi ở Chế độ 1 Chiều nên sẽ không thể quay lại câu này được nữa. ${getUserLabel()} có chắc chắn muốn bỏ qua không?`)) {
+                    return;
+                }
             }
         }
     }
@@ -842,6 +1035,11 @@ function updateTimerDisplay() {
 // NỘP BÀI VÀ TÍNH ĐIỂM
 // ==========================================================================
 function confirmFinishExam() {
+    const currentQ = STATE.currentExamQuestions[STATE.currentIndex];
+    if (currentQ && currentQ.isMulti) {
+        saveCurrentExamMultiAnswer();
+    }
+
     const answeredCount = Object.keys(STATE.userAnswers).length;
     const total = STATE.currentExamQuestions.length;
 
@@ -861,6 +1059,23 @@ function finishExam() {
     const total = STATE.currentExamQuestions.length;
     let correctCount = 0;
     const failedQuestionIds = [];
+
+    // Đối với câu Chọn nhiều: Mặc định nếu không chọn gì thì tính là "Không chọn ý nào (0 ý)" thay vì bỏ qua
+    STATE.currentExamQuestions.forEach((q, idx) => {
+        if (q.isMulti && !STATE.userAnswers[idx]) {
+            const correctIndices = q.shuffledOptions.map((o, i) => o.isCorrect ? i : null).filter(i => i !== null);
+            STATE.userAnswers[idx] = {
+                isMulti: true,
+                chosenIndices: [],
+                chosenIndex: -1,
+                isCorrect: (q.correctCount === 0),
+                chosenText: 'Không chọn ý nào (0 ý)',
+                correctText: correctIndices.length > 0
+                    ? correctIndices.map(i => `${['A','B','C','D','E'][i]}. ${q.shuffledOptions[i].text}`).join(' | ')
+                    : 'Không có đáp án nào đúng'
+            };
+        }
+    });
 
     STATE.currentExamQuestions.forEach((q, idx) => {
         const ans = STATE.userAnswers[idx];
@@ -958,9 +1173,15 @@ function renderResultScreen(score, total, percent, durationStr) {
         item.className = `review-item ${isCorrect ? 'is-correct' : 'is-wrong'}`;
 
         const chosenText = ans ? ans.chosenText : '<em>Chưa trả lời (Bỏ qua)</em>';
-        const correctText = q.rawOptions[0]; // rawOptions[0] luôn là đáp án đúng!
+        let correctText = '';
+        if (q.isMulti) {
+            const correctOpts = q.rawOptions.slice(0, q.correctCount);
+            correctText = correctOpts.length > 0 ? correctOpts.join(' | ') : 'Không có đáp án nào đúng';
+        } else {
+            correctText = q.rawOptions[0];
+        }
 
-        const typeLabel = q.question_type ? ` • ${q.question_type}` : '';
+        const typeLabel = q.isMulti ? ` • ☑️ Chọn Nhiều (${q.correctCount} ý đúng)` : (q.question_type ? ` • ${q.question_type}` : '');
         const formatLabel = q.code_file ? '💻 Code' : '📖 Lý Thuyết';
 
         item.innerHTML = `

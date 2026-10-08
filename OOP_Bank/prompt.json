@@ -1,0 +1,203 @@
+{
+    "generation_settings": {
+        "default_model": "gemini-3.5-flash-lite",
+        "thinking_budget": 1024,
+        "batch_size": 5,
+        "cooldown_seconds": 3.5,
+        "code_ratio": 0.95,
+        "difficulty_weights": {
+            "Easy": 0.15,
+            "Medium": 0.35,
+            "Trap": 0.20,
+            "Smokescreen": 0.20,
+            "Boss": 0.10
+        },
+        "question_type_weights": {
+            "Output": 0.40,
+            "Order_Trace": 0.10,
+            "Calculation": 0.15,
+            "Code_Completion": 0.10,
+            "Error_Check": 0.10,
+            "Concept_Apply": 0.05,
+            "Multi_Select": 0.10
+        }
+    },
+    "topics": [
+        {
+            "id": "Static_Storage_Scope",
+            "name": "Static Storage & Variable Scope",
+            "description": "Phạm vi biến toàn cục, biến cục bộ, toán tử phạm vi ::, và biến tĩnh static trong hàm (chỉ khởi tạo 1 lần duy nhất, giữ giá trị qua mọi lần gọi)."
+        },
+        {
+            "id": "IOManip_Formatting",
+            "name": "IOManip & Data Formatting",
+            "description": "Định dạng in với <iomanip>: setw (bùa 1 lần), setprecision (bùa vĩnh cửu, số chữ số có nghĩa vs số thực), fixed, showpoint, và kiểu liệt kê enum."
+        },
+        {
+            "id": "Type_Casting_Modifiers",
+            "name": "Safe Type Casting (static_cast & const_cast)",
+            "description": "Các toán tử ép kiểu an toàn trong C++: static_cast (chuyển đổi kiểu dữ liệu hợp lệ lúc biên dịch), const_cast (cơ chế duy nhất cho phép tạm thời gỡ bỏ tính hằng const của biến hoặc con trỏ), và phân biệt ép kiểu ngầm định vs tường minh."
+        },
+        {
+            "id": "Reference_Lvalue_Rvalue",
+            "name": "References & Lvalue/Rvalue Rules",
+            "description": "Bản chất tham chiếu & (khế ước vĩnh cửu, cấm re-binding), phân biệt lvalue vs rvalue (cấm int& r = 20, cho phép const int& r = 20), hàm trả về tham chiếu ở vế trái phép gán."
+        },
+        {
+            "id": "Pointers_Const_Modifiers",
+            "name": "Pointers & Const Triangle",
+            "description": "Con trỏ và tam giác quỷ const: phân biệt const int* p (con trỏ hằng), int* const p (hằng con trỏ), const int* const p, toán tử -> vs (*p)., con trỏ hàm (Function Pointer)."
+        },
+        {
+            "id": "Memory_Stack_Heap",
+            "name": "Memory Management (Stack vs Heap)",
+            "description": "Cấp phát tĩnh trên Stack vs cấp phát động trên Heap (new, delete, delete[] cho mảng), bẫy con trỏ lạc (Dangling Pointer) và rò rỉ bộ nhớ (Memory Leak)."
+        },
+        {
+            "id": "Default_Arguments_Overloading",
+            "name": "Default Arguments & Function Overloading",
+            "description": "Đối số mặc định (quy tắc liên tục từ phải sang trái, cấm bỏ trống ở giữa), đa năng hóa hàm (phân biệt bằng tham số, cấm chỉ khác kiểu trả về, bẫy gọi mơ hồ Ambiguous)."
+        },
+        {
+            "id": "Constructors_Destructors_Lifecycle",
+            "name": "Constructors, Destructor & Lifecycle",
+            "description": "Bộ ba hàm dựng (Default, Parameterized, Copy Constructor Type(const Type&)), danh sách khởi tạo `:`, hàm hủy ~Destructor, vòng đời đối tượng trong khối lệnh `{}` (Block Scope) và mảng đối tượng."
+        },
+        {
+            "id": "Shallow_vs_Deep_Copy_Lifecycle",
+            "name": "Shallow Copy vs Deep Copy (Rule of Three)",
+            "description": "Bản chất sao chép nông (chỉ chép địa chỉ con trỏ) của constructor/toán tử gán mặc định khi lớp có cấp phát động (new[]); thảm họa con trỏ lạc (Dangling Pointer) và lỗi giải phóng trùng lặp (Double Free) khi hủy; giải pháp sao chép sâu (Deep Copy) qua Quy tắc bộ ba (Rule of Three: Destructor, Copy Constructor, Copy Assignment)."
+        },
+        {
+            "id": "Const_Static_Members",
+            "name": "Const & Static Class Members",
+            "description": "Phương thức const (chỉ đọc), đối tượng const chỉ được phép gọi hàm const; thuộc tính static (bắt buộc định nghĩa ngoài file), phương thức static không có con trỏ this."
+        },
+        {
+            "id": "Friend_Mechanisms",
+            "name": "Friend Functions & Friend Classes",
+            "description": "Cơ chế bạn bè (hàm friend, lớp friend) cấp quyền truy cập private; tính chất 1 chiều, không bắc cầu, không kế thừa; khai báo trước (Forward Declaration)."
+        },
+        {
+            "id": "Composition_Has_A",
+            "name": "Composition Relationship (Has-A)",
+            "description": "Quan hệ chứa trong: thứ tự khởi tạo tuân theo thứ tự khai báo thành viên trong class; khi hủy thì lớp bao bọc hủy trước, các thành viên con hủy sau theo thứ tự ngược lại."
+        },
+        {
+            "id": "Explicit_Constructor_Conversion",
+            "name": "Explicit Constructor & Implicit Conversion",
+            "description": "Từ khóa explicit trước constructor 1 tham số nhằm ngăn chặn trình biên dịch tự động ép kiểu ngầm định khi truyền tham số hoặc khởi tạo mảng."
+        },
+        {
+            "id": "Operator_Rules_Restrictions",
+            "name": "Operator Overloading Rules & Banned Operators",
+            "description": "Quy tắc nạp chồng toán tử: chỉ nạp chồng toán tử có sẵn, giữ nguyên độ ưu tiên và số ngôi; danh sách toán tử bị cấm nạp chồng: dấu chấm ., con trỏ thành viên .*, toán tử ::, toán tử 3 ngôi ?:, sizeof, typeid."
+        },
+        {
+            "id": "Member_vs_Friend_Operators",
+            "name": "Member vs Friend Operators (Commutative Property)",
+            "description": "So sánh Member vs Friend: toán tử bắt buộc là Member (=, [], (), ->), toán tử bắt buộc là Friend (<<, >>), tính giao hoán đối xứng phép toán (2 + a vs a + 2)."
+        },
+        {
+            "id": "Stream_Extraction_Insertion_Operators",
+            "name": "Stream I/O Operators (<< & >>)",
+            "description": "Đa năng hóa toán tử nhập/xuất stream (operator<< và operator>>): bắt buộc dùng hàm friend (do toán hạng trái là ostream/istream không thuộc class), truyền và trả về tham chiếu istream&/ostream& để cho phép gọi nối chuỗi liên hoàn (cin >> a >> b; cout << a << b;)."
+        },
+        {
+            "id": "Arithmetic_Relational_Operators",
+            "name": "Arithmetic & Relational Operators",
+            "description": "Toán tử số học (+, -, *, / trả về value), toán tử gán phức hợp (+=, -= trả về tham chiếu *this), toán tử so sánh (==, !=, <, > trả về bool; C++ không tự sinh operator==)."
+        },
+        {
+            "id": "Increment_Decrement_Operators",
+            "name": "Increment & Decrement Operators (++ / --)",
+            "description": "Toán tử tăng giảm: tiền tố ++a (không tham số, tăng trước, trả về tham chiếu Type&), hậu tố a++ (tham số bù nhìn int, lưu bản sao cũ, trả về giá trị Type cũ)."
+        },
+        {
+            "id": "Subscript_Functor_Conversion",
+            "name": "Subscript, Functor & Conversion Operators",
+            "description": "Toán tử chỉ số mảng operator[] (trả về tham chiếu int& để gán a[i] = val), toán tử gọi hàm operator() (Functor), toán tử chuyển kiểu tùy biến operator double() const (không ghi kiểu trả về)."
+        },
+        {
+            "id": "Assignment_Operator_DeepCopy",
+            "name": "Assignment Operator & Deep Copy",
+            "description": "Toán tử gán operator= với 4 bước chuẩn mực: kiểm tra tự gán (this == &other), giải phóng vùng nhớ cũ (delete[]), cấp phát mới và sao chép sâu (Deep Copy), trả về *this."
+        },
+        {
+            "id": "Operator_Precedence_Associativity",
+            "name": "Operator Precedence, Associativity & Complex Expressions",
+            "description": "Độ ưu tiên và chiều kết hợp của các toán tử trong biểu thức phức hợp: phân biệt tiền tố vs hậu tố (*p++, *++p, ++*p, (*p)++), bẫy gán nối chuỗi ((a += b) += c vs a = (b += c)), độ ưu tiên dịch bit/xuất luồng so với bitwise và so sánh (cout << (a & b), a < b < c), cơ chế ngắt đoản mạch (short-circuit) của toán tử logic (&&, ||), và quy tắc thứ tự đánh giá biểu thức."
+        }
+    ],
+    "difficulties": {
+        "Easy": {
+            "name": "Cơ bản",
+            "instruction": "Kiểm tra trực tiếp cú pháp, định nghĩa và nguyên lý cốt lõi của chủ đề được chỉ định. Mã nguồn ngắn gọn (10 - 18 dòng), luồng chạy thẳng thắn, đơn giản, tường minh, không đánh đố hay gài bẫy."
+        },
+        "Medium": {
+            "name": "Vận dụng",
+            "instruction": "Đòi hỏi vận dụng kết hợp 2-3 khái niệm hoặc xử lý logic đa bước trong chủ đề được chọn. Mã nguồn vừa phải (18 - 28 dòng), yêu cầu người thi hiểu rõ luồng điều khiển và quy tắc ngôn ngữ chuẩn."
+        },
+        "Trap": {
+            "name": "Cạm bẫy",
+            "instruction": "Mã nguồn ngắn (15 - 25 dòng) nhưng gài cạm bẫy logic tinh vi, đánh trúng các điểm hiểu nhầm phổ biến, trường hợp biên (edge cases), ngoại lệ cú pháp hoặc quy tắc ngầm định của chủ đề. Bề ngoài trông tưởng hiển nhiên nhưng đáp án thực tế lại khác."
+        },
+        "Smokescreen": {
+            "name": "Tung hỏa mù",
+            "instruction": "Mã nguồn dài (30 - 45 dòng), có cấu trúc phân tầng, nhiều hàm/khối lệnh hoặc biến phụ nhằm phân tán sự chú ý và làm rối mắt người thi. Tuy nhiên, mấu chốt logic để tìm ra đáp án chỉ xoay quanh một quy tắc trọng tâm duy nhất của chủ đề."
+        },
+        "Boss": {
+            "name": "Trùm cuối",
+            "instruction": "Thử thách đỉnh cao kết hợp chuyên sâu toàn diện: đòi hỏi phân tích vòng đời, quản lý bộ nhớ, truy vết trạng thái biến thiên phức tạp hoặc các ràng buộc cú pháp nghiêm ngặt nhất của chủ đề. Mã nguồn chặt chẽ, tư duy phân tích đa tầng."
+        }
+    },
+    "question_types": {
+        "Output": {
+            "name": "Dự đoán Output",
+            "instruction": "Yêu cầu theo dõi luồng thực thi và xác định chính xác chuỗi kết quả in ra màn hình console khi chạy chương trình."
+        },
+        "Order_Trace": {
+            "name": "Truy vết thứ tự",
+            "instruction": "Yêu cầu xác định chính xác trình tự thực hiện (thời điểm gọi, thứ tự trước/sau, vào/ra) của các hàm, khối lệnh hoặc sự kiện trong vòng đời thực thi của chương trình."
+        },
+        "Calculation": {
+            "name": "Tính giá trị của biến",
+            "instruction": "Yêu cầu tính toán và xác định chính xác giá trị số học hoặc trạng thái cuối cùng của một hoặc nhiều biến / thuộc tính đối tượng sau khi thực thi các biểu thức, phép gán, toán tử nạp chồng hoặc lời gọi hàm."
+        },
+        "Error_Check": {
+            "name": "Kiểm tra tính hợp lệ & Lỗi",
+            "instruction": "Yêu cầu thẩm định xem đoạn mã có hợp lệ hay không; nhận diện chính xác trạng thái lỗi biên dịch (Compile Error), lỗi thời gian chạy (Runtime Error) hoặc thực thi bình thường."
+        },
+        "Concept_Apply": {
+            "name": "Vận dụng khái niệm",
+            "instruction": "Đánh giá mức độ am hiểu bản chất lý thuyết, phân tích ưu/nhược điểm thiết kế, tính đúng đắn của phát biểu hoặc quy tắc chuẩn mực của ngôn ngữ liên quan đến chủ đề."
+        },
+        "Code_Completion": {
+            "name": "Điền khuyết mã nguồn",
+            "instruction": "Cho một chương trình C++ bị khuyết một biểu thức, cú pháp hoặc lời gọi then chốt tại vị trí ghi chú '// [ĐIỀN CODE TẠI ĐÂY]'. Yêu cầu chọn chính xác đoạn mã cần điền để chương trình biên dịch thành công, đạt mục tiêu thiết kế hoặc cho ra kết quả mong muốn."
+        },
+        "Multi_Select": {
+            "name": "Chọn nhiều đáp án đúng",
+            "instruction": "Câu hỏi trắc nghiệm yêu cầu chọn từ 0 hoặc nhiều phương án đúng (hoặc chọn tất cả các ý đúng). Trường 'question_type' trả về BẮT BUỘC có định dạng 'Multi_Select:K' (trong đó K là số lượng ý đúng từ 0 đến tổng số phương án, ví dụ Multi_Select:2 hoặc Multi_Select:3). K đáp án ĐÚNG BẮT BUỘC nằm liên tiếp ở các trường đầu tiên từ 'opt1' đến 'optK'. Các trường 'opt' còn lại là các phương án gây nhiễu/bẫy."
+        }
+    },
+    "system_instruction": "Bạn là Chuyên gia Khảo thí và Giảng viên Cao cấp về C++ và Lập trình Hướng đối tượng (OOP) trình độ Đại học.\n\nQUY TẮC BẤT BIẾN:\n1. ĐÁP ÁN ĐÚNG: Đối với câu trắc nghiệm chọn đơn thông thường, cột 'opt1' BẮT BUỘC là đáp án chính xác nhất 100%! 'opt2' đến 'opt5' là các phương án gây nhiễu hợp lý (Distractors). Phía client sẽ tự xáo trộn ngẫu nhiên.\n2. SỐ LỰA CHỌN: Có từ 3 đến 5 phương án (tối thiểu opt1..opt3, nếu chỉ có 3 hoặc 4 phương án thì các opt còn lại để chuỗi rỗng \"\"). Phương án nhiễu có thể gồm: 'Lỗi biên dịch', 'Lỗi thời gian chạy (Runtime Error)', 'Đáp án khác', hoặc 'Giá trị rác'.\n3. CHUẨN CODE C++: Viết chuẩn C++11/C++14 có hàm main() hoàn chỉnh, thụt lề 4 spaces, không dùng ký tự đặc biệt.\n4. RANH GIỚI KIẾN THỨC BẮT BUỘC: CHỈ tạo câu hỏi bám sát 100% vào nội dung và phạm vi mô tả của chủ đề (topic) được giao trong từng slot. Tuyệt đối KHÔNG tự ý đưa vào các kỹ thuật, cú pháp hay kiến thức nằm ngoài phạm vi mô tả của chủ đề đó.\n5. ĐỘ CHÍNH XÁC: Tuân thủ chính xác từng hướng dẫn cụ thể của từng slot câu hỏi trong user prompt.\n6. GIẢI THÍCH: Trường 'explanation' nêu rõ bản chất cơ chế bộ nhớ, quy tắc ngôn ngữ hoặc luồng thực thi đứng sau đáp án đúng của chủ đề đó.\n7. QUY TẮC LỖI BIÊN DỊCH: Nếu câu hỏi có phương án liên quan tới lỗi biên dịch (hoặc là đáp án đúng, hoặc phương án nhiễu), nếu không phải dạng bài trắc nghiệm chọn dòng lỗi cụ thể, thì phương án BẮT BUỘC chỉ ghi thẳng chữ: 'Lỗi biên dịch' (và không nói gì thêm, không giải thích lý do trong phương án để tránh lộ đề). Toàn bộ phân tích lý do lỗi ghi vào trường 'explanation'.\n8. QUY TẮC ĐIỀN KHUYẾT MÃ NGUỒN (Code_Completion): Bắt buộc trong mã nguồn C++ phải có chính xác một vị trí đánh dấu là '// [ĐIỀN CODE TẠI ĐÂY]'. Đoạn code trong 'opt1' (đáp án đúng) khi thay thế vào vị trí này phải tạo thành một chương trình C++ hoàn chỉnh, biên dịch thành công 100% bằng g++ -std=c++11 và thực thi đúng logic yêu cầu. Các phương án 'opt2'..'opt5' là các đoạn code sai cú pháp, nhầm lẫn thứ tự tham số, thiếu từ khóa hoặc vi phạm quy tắc OOP.\n9. QUY TẮC CÂU HỎI CHỌN NHIỀU (Multi_Select:K): Nếu câu hỏi có dạng Multi_Select, trường 'question_type' BẮT BUỘC trả về định dạng 'Multi_Select:K' (trong đó K là số lượng ý đúng từ 0 đến số lựa chọn, ví dụ Multi_Select:2 hoặc Multi_Select:3). K đáp án ĐÚNG BẮT BUỘC nằm liên tiếp ở các trường đầu tiên từ 'opt1' đến 'optK' (opt1..optK là đúng). Các trường opt tiếp theo là các phương án gây nhiễu/bẫy. Nội dung câu hỏi nên ghi rõ '(Chọn tất cả đáp án đúng)' hoặc '(Chọn các đáp án đúng)'.",
+    "response_format_schema": {
+        "type": "array",
+        "description": "Danh sách các câu hỏi trắc nghiệm C++ theo đúng từng blueprint được giao",
+        "items": {
+            "topic": "Tên chủ đề từ danh sách topics",
+            "difficulty": "Easy | Medium | Trap | Smokescreen | Boss",
+            "question_type": "Output | Order_Trace | Calculation | Error_Check | Concept_Apply | Code_Completion | Multi_Select:K",
+            "has_code": true,
+            "question": "Nội dung câu hỏi bằng tiếng Việt rõ ràng, mạch lạc",
+            "code_content": "Mã nguồn C++ hoàn chỉnh nếu has_code = true, nếu has_code = false thì để chuỗi rỗng",
+            "opt1": "Đáp án ĐÚNG tuyệt đối (hoặc đáp án đúng thứ 1 nếu Multi_Select:K với K >= 1; hoặc phương án gây nhiễu 1 nếu Multi_Select:0)",
+            "opt2": "Phương án gây nhiễu 1 (hoặc đáp án đúng thứ 2 nếu Multi_Select:K với K >= 2)",
+            "opt3": "Phương án gây nhiễu 2 (hoặc đáp án đúng thứ 3 nếu Multi_Select:K với K >= 3)",
+            "opt4": "Phương án gây nhiễu 3 (hoặc đáp án đúng thứ 4 nếu Multi_Select:K với K >= 4, hoặc rỗng)",
+            "opt5": "Phương án gây nhiễu 4 (hoặc đáp án đúng thứ 5 nếu Multi_Select:K với K >= 5, hoặc rỗng)",
+            "explanation": "Lời giải thích sâu sắc về bản chất OOP C++ cho câu hỏi này"
+        }
+    }
+}

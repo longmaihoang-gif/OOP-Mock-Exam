@@ -783,6 +783,160 @@ button {
     border-color: var(--danger);
 }
 
+/* TRẠNG THÁI BỎ SÓT (MISSED) & MỜ (DIMMED) TRONG CHỌN NHIỀU */
+.option-btn.missed-reveal {
+    background: rgba(245, 158, 11, 0.18) !important;
+    border-color: #F59E0B !important;
+    color: #FDE68A !important;
+}
+
+.option-btn.missed-reveal .option-key {
+    background: #F59E0B;
+    color: #070B14;
+    border-color: #F59E0B;
+}
+
+.option-btn.dimmed-reveal {
+    opacity: 0.45;
+}
+
+/* HỘP KIỂM (CHECKBOX) CHO CÂU CHỌN NHIỀU */
+.option-checkbox {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.option-btn:hover .option-checkbox {
+    border-color: var(--primary);
+}
+
+.option-checkbox.checked,
+.option-btn.selected .option-checkbox {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.option-checkbox.checked::after,
+.option-btn.selected .option-checkbox::after {
+    content: "✓";
+    font-size: 13px;
+    font-weight: 900;
+    color: #070B14;
+}
+
+.option-btn.correct-reveal .option-checkbox {
+    background: var(--success);
+    border-color: var(--success);
+}
+.option-btn.correct-reveal .option-checkbox::after {
+    content: "✓";
+    color: #FFFFFF;
+}
+
+.option-btn.missed-reveal .option-checkbox {
+    background: #F59E0B;
+    border-color: #F59E0B;
+}
+.option-btn.missed-reveal .option-checkbox::after {
+    content: "!";
+    font-weight: 900;
+    color: #000000;
+}
+
+.option-btn.wrong-reveal .option-checkbox {
+    background: var(--danger);
+    border-color: var(--danger);
+}
+.option-btn.wrong-reveal .option-checkbox::after {
+    content: "✕";
+    font-weight: 900;
+    color: #FFFFFF;
+}
+
+/* HUY HIỆU PHẢN HỒI Ý ĐÚNG / SAI / BỎ SÓT */
+.multi-tag {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    margin-left: auto;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+.tag-correct {
+    background: rgba(16, 185, 129, 0.25);
+    color: #10B981;
+    border: 1px solid #10B981;
+}
+
+.tag-missed {
+    background: rgba(245, 158, 11, 0.25);
+    color: #F59E0B;
+    border: 1px solid #F59E0B;
+}
+
+.tag-wrong {
+    background: rgba(239, 68, 68, 0.25);
+    color: #EF4444;
+    border: 1px solid #EF4444;
+}
+
+/* NÚT XÁC NHẬN CHỌN NHIỀU */
+.multi-confirm-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+
+.btn-confirm-multi {
+    background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    padding: 0.75rem 1.8rem;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4);
+    border: 1px solid rgba(139, 92, 246, 0.5);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-confirm-multi:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(139, 92, 246, 0.6);
+    background: linear-gradient(135deg, #9333EA 0%, #7C3AED 100%);
+}
+
+.multi-feedback-banner {
+    padding: 0.6rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 0.6rem;
+}
+
+.feedback-perfect {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #A7F3D0;
+}
+
+.feedback-warning {
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #FDE68A;
+}
+
 /* KHUNG GIẢI THÍCH (EXPLANATION BOX) */
 .explanation-box {
     background: rgba(139, 92, 246, 0.1);

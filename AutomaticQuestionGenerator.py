@@ -138,7 +138,7 @@ def generate_exact_blueprints(total_questions, config):
 
         if not has_code:
             # Câu lý thuyết thuần
-            q_type = random.choice(["Concept_Apply", "Order_Trace", "Error_Check"])
+            q_type = random.choice(["Concept_Apply", "Order_Trace", "Error_Check", "Multi_Select"])
             # Nếu là lý thuyết thì không thể là Smokescreen
             if diff == "Smokescreen":
                 diff = random.choice(["Medium", "Trap"])
@@ -451,7 +451,7 @@ def main():
             req_list_text.append(slot_text)
 
         batch_prompt = f"""
-Hãy tạo chính xác {len(batch)} câu hỏi trắc nghiệm C++ OOP tương ứng 1-đối-1 với danh sách bản thiết kế động sau:
+Hãy tạo chính xác {len(batch)} câu hỏi trắc nghiệm tương ứng 1-đối-1 với danh sách bản thiết kế động sau:
 
 {chr(10).join(req_list_text)}
 
@@ -463,7 +463,7 @@ Mỗi phần tử gồm:
 - question_type ("Output" | "Order_Trace" | "Calculation" | "Error_Check" | "Concept_Apply")
 - has_code (boolean)
 - question (string)
-- code_content (string chứa toàn bộ mã nguồn C++ có hàm main() nếu has_code=true, để chuỗi rỗng nếu has_code=false)
+- code_content (string chứa toàn bộ mã nguồn nếu has_code=true, để chuỗi rỗng nếu has_code=false)
 - opt1 (string: ĐÁP ÁN ĐÚNG 100%)
 - opt2 (string: Phương án nhiễu 1)
 - opt3 (string: Phương án nhiễu 2)
@@ -493,7 +493,7 @@ Nếu phương án liên quan tới lỗi biên dịch (dù là opt1 hay distrac
             q_diff = q_data.get("difficulty", "Medium")
             q_type = q_data.get("question_type", "Output")
             q_has_code = q_data.get("has_code", False)
-            q_text = q_data.get("question", "Câu hỏi...")
+            q_text = q_data.get("question") or q_data.get("question_text") or q_data.get("content") or "Phát biểu nào sau đây là CHÍNH XÁC NHẤT?"
             q_code = q_data.get("code_content", "")
             q_exp = q_data.get("explanation", "Giải thích...")
             

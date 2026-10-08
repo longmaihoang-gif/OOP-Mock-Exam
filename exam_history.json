@@ -1,1185 +1,349 @@
 [
   {
-    "id": "exam_1791006031956",
-    "date": "12:40:31 3/10/2026",
-    "timestamp": "2026-10-03T05:40:31.960Z",
-    "mode": "Thi Thử (1 Chiều)",
-    "score": "6/8",
+    "id": "exam_1791427654718",
+    "date": "09:47:34 8/10/2026",
+    "timestamp": "2026-10-08T02:47:34.722Z",
+    "mode": "Thi Thử",
+    "score": "6/10",
     "score_count": 6,
-    "total_count": 8,
-    "percent": 75,
-    "duration": "03:57",
-    "failed_question_ids": [
-      100,
-      118
-    ],
-    "questions_attempted": [
-      {
-        "id": 136,
-        "user_answer": "25",
-        "is_correct": true
-      },
-      {
-        "id": 100,
-        "user_answer": "1009",
-        "is_correct": false
-      },
-      {
-        "id": 112,
-        "user_answer": "12",
-        "is_correct": true
-      },
-      {
-        "id": 85,
-        "user_answer": "11 12",
-        "is_correct": true
-      },
-      {
-        "id": 118,
-        "user_answer": "In ra DUTITF",
-        "is_correct": false
-      },
-      {
-        "id": 54,
-        "user_answer": "C1 C2 D2 C3 D3 D1",
-        "is_correct": true
-      },
-      {
-        "id": 64,
-        "user_answer": "(3, 4)",
-        "is_correct": true
-      },
-      {
-        "id": 158,
-        "user_answer": "Length = 15",
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1791003945163",
-    "date": "12:05:45 3/10/2026",
-    "timestamp": "2026-10-03T05:05:45.167Z",
-    "mode": "Thi Thử (1 Chiều)",
-    "score": "8/10",
-    "score_count": 8,
     "total_count": 10,
-    "percent": 80,
-    "duration": "07:19",
+    "percent": 60,
+    "duration": "05:50",
     "failed_question_ids": [
-      134,
-      103
+      46,
+      48
     ],
     "questions_attempted": [
       {
-        "id": 18,
-        "user_answer": "10 50 100",
+        "id": 11,
+        "user_answer": "Tiến trình phát sinh ngắt phần mềm (Trap/Exception) -> CPU chuyển Mode bit từ 1 sang 0 -> Bộ xử lý tra cứu bảng vector ngắt để gọi hàm xử lý của Kernel -> Hoàn thành tác vụ, chuyển Mode bit về lại 1 và trả quyền cho User Mode.",
         "is_correct": true
       },
       {
-        "id": 145,
-        "user_answer": "40-10",
+        "id": 38,
+        "user_answer": "A. Các thành phần cơ bản Hệ điều hành hầu hết là phần mềm, chạy thực hiện ở chế độ kernel. | D. Phần còn lại của Hệ điều hành là phần mềm chạy thực hiện ở chế độ user.",
         "is_correct": true
       },
       {
-        "id": 134,
-        "user_answer": "Undefined Behavior (Giá trị rác)",
+        "id": 46,
+        "user_answer": "A. PT không chỉ giới hạn ID và tham chiếu đến PCB mà trong một số HĐH vai trò chính của nó là ánh xạ PID đến PCB tương ứng.",
         "is_correct": false
       },
       {
-        "id": 146,
-        "user_answer": "3 4 5",
+        "id": 50,
+        "user_answer": "Một processor x86-64 có thể thực thi các chương trình ARM và một ARM có thể thực thi các chương trình x86-64.",
         "is_correct": true
       },
       {
-        "id": 103,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": false
-      },
-      {
-        "id": 9,
-        "user_answer": "4",
-        "is_correct": true
-      },
-      {
-        "id": 99,
-        "user_answer": "Toán tử hậu tố bắt buộc phải có tham số giả (dummy parameter) kiểu int để phân biệt với tiền tố, và phải tạo một bản sao giá trị cũ để trả về trước khi thực sự tăng giá trị bên trong.",
+        "id": 12,
+        "user_answer": "Giá trị của biến semaphore S âm (|S|) biểu thị số lượng tiến trình đang bị khóa và nằm trong hàng đợi chờ của semaphore đó.",
         "is_correct": true
       },
       {
         "id": 48,
-        "user_answer": "6 6 7",
-        "is_correct": true
-      },
-      {
-        "id": 149,
-        "user_answer": "10 20",
-        "is_correct": true
-      },
-      {
-        "id": 106,
-        "user_answer": "00",
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1791000245260",
-    "date": "11:04:05 3/10/2026",
-    "timestamp": "2026-10-03T04:04:05.260Z",
-    "mode": "Thi Thử (1 Chiều)",
-    "score": "43/50",
-    "score_count": 43,
-    "total_count": 50,
-    "percent": 86,
-    "duration": "39:11",
-    "failed_question_ids": [
-      105,
-      110,
-      49,
-      156,
-      140,
-      112,
-      116
-    ],
-    "questions_attempted": [
-      {
-        "id": 123,
-        "user_answer": "15",
-        "is_correct": true
-      },
-      {
-        "id": 124,
-        "user_answer": "12",
-        "is_correct": true
-      },
-      {
-        "id": 155,
-        "user_answer": "6 6 7",
-        "is_correct": true
-      },
-      {
-        "id": 157,
-        "user_answer": "D2 D3 D1",
-        "is_correct": true
-      },
-      {
-        "id": 15,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": true
-      },
-      {
-        "id": 88,
-        "user_answer": "Wheel_Init Engine_Init Car_Init Car_Destroy Engine_Destroy Wheel_Destroy",
-        "is_correct": true
-      },
-      {
-        "id": 85,
-        "user_answer": "11 12",
-        "is_correct": true
-      },
-      {
-        "id": 143,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": true
-      },
-      {
-        "id": 34,
-        "user_answer": "Phương thức static không thể được khai báo là const vì chúng không có con trỏ this để phân biệt đối tượng gọi hàm, và thuộc tính static bắt buộc phải được định nghĩa bên ngoài thân lớp (ngoại trừ const static kiểu nguyên khởi tạo trực tiếp).",
-        "is_correct": true
-      },
-      {
-        "id": 107,
-        "user_answer": "25",
-        "is_correct": true
-      },
-      {
-        "id": 2,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": true
-      },
-      {
-        "id": 78,
-        "user_answer": "7 7 10",
-        "is_correct": true
-      },
-      {
-        "id": 68,
-        "user_answer": "Chương trình biên dịch thành công, in ra đúng thứ tự khởi tạo và hủy của các đối tượng theo phạm vi block scope.",
-        "is_correct": true
-      },
-      {
-        "id": 139,
-        "user_answer": "237",
-        "is_correct": true
-      },
-      {
-        "id": 98,
-        "user_answer": "3",
-        "is_correct": true
-      },
-      {
-        "id": 105,
-        "user_answer": "55",
+        "user_answer": "A. B1,B2,B1,B2,C1,C2,C3,C4,A1,A2,A3,A1,... | C. B1,B2,A1,A2,C1,C2,A3,A1,B1,B2,C3,C4,...",
         "is_correct": false
-      },
-      {
-        "id": 152,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": true
-      },
-      {
-        "id": 110,
-        "user_answer": "AB2020",
-        "is_correct": false
-      },
-      {
-        "id": 63,
-        "user_answer": "Copy constructor bắt buộc phải nhận tham số truyền vào là tham chiếu hằng (const Type&), nếu nhận tham số theo giá trị (Type) sẽ gây lỗi biên dịch do đệ quy vô hạn.",
-        "is_correct": true
-      },
-      {
-        "id": 25,
-        "user_answer": "30",
-        "is_correct": true
-      },
-      {
-        "id": 22,
-        "user_answer": "Quan hệ bạn bè không có tính hai chiều (không đối xứng), không có tính bắc cầu và không được kế thừa.",
-        "is_correct": true
-      },
-      {
-        "id": 49,
-        "user_answer": "23",
-        "is_correct": false
-      },
-      {
-        "id": 69,
-        "user_answer": "15 100 \\n 25 100",
-        "is_correct": true
-      },
-      {
-        "id": 94,
-        "user_answer": "Thực hiện gọi toán tử thành viên (Member+) trước khi cộng n với 10, sau đó gọi toán tử bạn (Friend+) khi cộng 10 với n.",
-        "is_correct": true
-      },
-      {
-        "id": 81,
-        "user_answer": "10 20",
-        "is_correct": true
       },
       {
         "id": 5,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": true
-      },
-      {
-        "id": 19,
-        "user_answer": "Start C1 C2 D2 C3 D3 D1 End",
-        "is_correct": true
-      },
-      {
-        "id": 158,
-        "user_answer": "Length = 15",
-        "is_correct": true
-      },
-      {
-        "id": 156,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": false
-      },
-      {
-        "id": 39,
-        "user_answer": "Chương trình chạy bình thường và không có lỗi",
-        "is_correct": true
-      },
-      {
-        "id": 140,
-        "user_answer": "Chương trình biên dịch thành công và in ra: 36",
-        "is_correct": false
-      },
-      {
-        "id": 145,
-        "user_answer": "40-10",
-        "is_correct": true
-      },
-      {
-        "id": 138,
-        "user_answer": "2",
-        "is_correct": true
-      },
-      {
-        "id": 93,
-        "user_answer": "const_cast<int*>(ptr);",
-        "is_correct": true
-      },
-      {
-        "id": 150,
-        "user_answer": "Init;Conv;Func;",
-        "is_correct": true
-      },
-      {
-        "id": 112,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": false
-      },
-      {
-        "id": 92,
-        "user_answer": "p là con trỏ trỏ tới dữ liệu hằng (pointer to const), ta có thể thay đổi địa chỉ mà p lưu trữ nhưng không thể thay đổi giá trị của biến mà p đang trỏ tới thông qua *p.",
-        "is_correct": true
-      },
-      {
-        "id": 45,
-        "user_answer": "Chương trình biên dịch thành công và thực thi bình thường",
-        "is_correct": true
-      },
-      {
-        "id": 144,
-        "user_answer": "D-3 D-2 D-1",
-        "is_correct": true
-      },
-      {
-        "id": 116,
-        "user_answer": "Operator delete[] ExamB / Destructor Exam A / Destructor Exam A / Destructor Exam A",
-        "is_correct": false
-      },
-      {
-        "id": 151,
-        "user_answer": "15",
-        "is_correct": true
-      },
-      {
-        "id": 40,
-        "user_answer": "Chương trình chạy bình thường và không có lỗi",
-        "is_correct": true
-      },
-      {
-        "id": 119,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": true
-      },
-      {
-        "id": 12,
-        "user_answer": "3 2 0",
-        "is_correct": true
-      },
-      {
-        "id": 120,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": true
-      },
-      {
-        "id": 97,
-        "user_answer": "C1 C2 D2 D1",
-        "is_correct": true
-      },
-      {
-        "id": 135,
-        "user_answer": "N",
-        "is_correct": true
-      },
-      {
-        "id": 117,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": true
-      },
-      {
-        "id": 27,
-        "user_answer": "D3 D2 D1 D0",
-        "is_correct": true
-      },
-      {
-        "id": 54,
-        "user_answer": "C1 C2 D2 C3 D3 D1",
+        "user_answer": "Tiến trình và Chương trình là một khái niệm, trong đó chương trình là thể hiện động nằm trong RAM còn tiến trình là thể hiện thụ động trên đĩa.",
         "is_correct": true
       }
     ]
   },
   {
-    "id": "exam_1790995441452",
-    "date": "09:44:01 3/10/2026",
-    "timestamp": "2026-10-03T02:44:01.452Z",
-    "mode": "Thi Thử (1 Chiều)",
-    "score": "8/10",
-    "score_count": 8,
-    "total_count": 10,
-    "percent": 80,
-    "duration": "06:54",
-    "failed_question_ids": [
-      128,
-      57
-    ],
-    "questions_attempted": [
-      {
-        "id": 115,
-        "user_answer": "32",
-        "is_correct": true
-      },
-      {
-        "id": 97,
-        "user_answer": "C1 C2 D2 D1",
-        "is_correct": true
-      },
-      {
-        "id": 12,
-        "user_answer": "3 2 0",
-        "is_correct": true
-      },
-      {
-        "id": 28,
-        "user_answer": "20",
-        "is_correct": true
-      },
-      {
-        "id": 83,
-        "user_answer": "Alloc 5 Alloc 10 Assign 5 Del 5 Del 5",
-        "is_correct": true
-      },
-      {
-        "id": 128,
-        "user_answer": "8",
-        "is_correct": false
-      },
-      {
-        "id": 72,
-        "user_answer": "15 20 25",
-        "is_correct": true
-      },
-      {
-        "id": 46,
-        "user_answer": "1",
-        "is_correct": true
-      },
-      {
-        "id": 57,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": false
-      },
-      {
-        "id": 148,
-        "user_answer": "5 5",
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1790994843964",
-    "date": "09:34:03 3/10/2026",
-    "timestamp": "2026-10-03T02:34:03.964Z",
-    "mode": "Làm Lại Câu Sai",
-    "score": "3/3",
-    "score_count": 3,
-    "total_count": 3,
-    "percent": 100,
-    "duration": "09:04",
-    "failed_question_ids": [],
-    "questions_attempted": [
-      {
-        "id": 71,
-        "user_answer": "Lỗi thời gian chạy (Runtime Error)",
-        "is_correct": true
-      },
-      {
-        "id": 122,
-        "user_answer": "-11",
-        "is_correct": true
-      },
-      {
-        "id": 131,
-        "user_answer": "11",
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1790993952436",
-    "date": "09:19:12 3/10/2026",
-    "timestamp": "2026-10-03T02:19:12.439Z",
-    "mode": "Thi Thử (1 Chiều)",
-    "score": "8/10",
-    "score_count": 8,
-    "total_count": 10,
-    "percent": 80,
-    "duration": "09:04",
-    "failed_question_ids": [
-      131,
-      122
-    ],
-    "questions_attempted": [
-      {
-        "id": 114,
-        "user_answer": "ITFITF12",
-        "is_correct": true
-      },
-      {
-        "id": 69,
-        "user_answer": "15 100 \\n 25 100",
-        "is_correct": true
-      },
-      {
-        "id": 131,
-        "user_answer": "12",
-        "is_correct": false
-      },
-      {
-        "id": 72,
-        "user_answer": "15 20 25",
-        "is_correct": true
-      },
-      {
-        "id": 70,
-        "user_answer": "Chương trình biên dịch thành công và thực hiện toán tử gán an toàn nhờ kiểm tra tự gán và sao chép sâu.",
-        "is_correct": true
-      },
-      {
-        "id": 137,
-        "user_answer": "34567891011",
-        "is_correct": true
-      },
-      {
-        "id": 121,
-        "user_answer": "123",
-        "is_correct": true
-      },
-      {
-        "id": 75,
-        "user_answer": "20",
-        "is_correct": true
-      },
-      {
-        "id": 122,
-        "user_answer": "-1-1",
-        "is_correct": false
-      },
-      {
-        "id": 62,
-        "user_answer": "25 25 7",
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1790956222629",
-    "date": "22:50:22 2/10/2026",
-    "timestamp": "2026-10-02T15:50:22.632Z",
-    "mode": "Làm Lại Câu Sai",
-    "score": "1/2",
-    "score_count": 1,
-    "total_count": 2,
-    "percent": 50,
-    "duration": "00:00",
-    "failed_question_ids": [
-      71
-    ],
-    "questions_attempted": [
-      {
-        "id": 71,
-        "user_answer": "Lỗi rò rỉ bộ nhớ (Memory Leak)",
-        "is_correct": false
-      },
-      {
-        "id": 142,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1790956028071",
-    "date": "22:47:08 2/10/2026",
-    "timestamp": "2026-10-02T15:47:08.073Z",
-    "mode": "Thi Thử (1 Chiều)",
-    "score": "9/10",
-    "score_count": 9,
-    "total_count": 10,
-    "percent": 90,
-    "duration": "07:21",
-    "failed_question_ids": [
-      142
-    ],
-    "questions_attempted": [
-      {
-        "id": 16,
-        "user_answer": "Chương trình chạy bình thường và in ra: 1 2 3",
-        "is_correct": true
-      },
-      {
-        "id": 50,
-        "user_answer": "100 200 2",
-        "is_correct": true
-      },
-      {
-        "id": 18,
-        "user_answer": "10 50 100",
-        "is_correct": true
-      },
-      {
-        "id": 84,
-        "user_answer": "[Copy] [Copy] [Self] 1 2 3",
-        "is_correct": true
-      },
-      {
-        "id": 139,
-        "user_answer": "237",
-        "is_correct": true
-      },
-      {
-        "id": 51,
-        "user_answer": "17 7 2",
-        "is_correct": true
-      },
-      {
-        "id": 11,
-        "user_answer": "10 99 30",
-        "is_correct": true
-      },
-      {
-        "id": 82,
-        "user_answer": "Lỗi biên dịch",
-        "is_correct": true
-      },
-      {
-        "id": 55,
-        "user_answer": "Init1 Copy11 Init12 Destroy11 Destroy12 Destroy1",
-        "is_correct": true
-      },
-      {
-        "id": 142,
-        "user_answer": "Chương trình biên dịch thành công và in ra: CD",
-        "is_correct": false
-      }
-    ]
-  },
-  {
-    "id": "exam_1790950959854",
-    "date": "21:22:39 2/10/2026",
-    "timestamp": "2026-10-02T14:22:39.854Z",
-    "mode": "Làm Lại Câu Sai",
-    "score": "4/5",
-    "score_count": 4,
-    "total_count": 5,
-    "percent": 80,
-    "duration": "19:35",
-    "failed_question_ids": [
-      71
-    ],
-    "questions_attempted": [
-      {
-        "id": 42,
-        "is_correct": true
-      },
-      {
-        "id": 56,
-        "is_correct": true
-      },
-      {
-        "id": 62,
-        "is_correct": true
-      },
-      {
-        "id": 71,
-        "is_correct": false
-      },
-      {
-        "id": 79,
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1790950634046",
-    "date": "21:17:14 2/10/2026",
-    "timestamp": "2026-10-02T14:17:14.046Z",
-    "mode": "Thi Thử (1 Chiều)",
-    "score": "23/25",
-    "score_count": 23,
-    "total_count": 25,
-    "percent": 92,
-    "duration": "19:35",
-    "failed_question_ids": [
-      71,
-      56
-    ],
-    "questions_attempted": [
-      {
-        "id": 42,
-        "is_correct": true
-      },
-      {
-        "id": 16,
-        "is_correct": true
-      },
-      {
-        "id": 99,
-        "is_correct": true
-      },
-      {
-        "id": 65,
-        "is_correct": true
-      },
-      {
-        "id": 95,
-        "is_correct": true
-      },
-      {
-        "id": 51,
-        "is_correct": true
-      },
-      {
-        "id": 73,
-        "is_correct": true
-      },
-      {
-        "id": 71,
-        "is_correct": false
-      },
-      {
-        "id": 23,
-        "is_correct": true
-      },
-      {
-        "id": 75,
-        "is_correct": true
-      },
-      {
-        "id": 25,
-        "is_correct": true
-      },
-      {
-        "id": 86,
-        "is_correct": true
-      },
-      {
-        "id": 24,
-        "is_correct": true
-      },
-      {
-        "id": 49,
-        "is_correct": true
-      },
-      {
-        "id": 28,
-        "is_correct": true
-      },
-      {
-        "id": 31,
-        "is_correct": true
-      },
-      {
-        "id": 27,
-        "is_correct": true
-      },
-      {
-        "id": 56,
-        "is_correct": false
-      },
-      {
-        "id": 43,
-        "is_correct": true
-      },
-      {
-        "id": 47,
-        "is_correct": true
-      },
-      {
-        "id": 50,
-        "is_correct": true
-      },
-      {
-        "id": 62,
-        "is_correct": true
-      },
-      {
-        "id": 63,
-        "is_correct": true
-      },
-      {
-        "id": 60,
-        "is_correct": true
-      },
-      {
-        "id": 87,
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1790948256438",
-    "date": "20:37:36 2/10/2026",
-    "timestamp": "2026-10-02T13:37:36.443Z",
-    "mode": "Thi Thử (1 Chiều)",
-    "score": "22/25",
-    "score_count": 22,
-    "total_count": 25,
-    "percent": 88,
-    "duration": "22:03",
-    "failed_question_ids": [
-      62,
-      79,
-      42
-    ],
-    "questions_attempted": [
-      {
-        "id": 24,
-        "is_correct": true
-      },
-      {
-        "id": 46,
-        "is_correct": true
-      },
-      {
-        "id": 59,
-        "is_correct": true
-      },
-      {
-        "id": 3,
-        "is_correct": true
-      },
-      {
-        "id": 16,
-        "is_correct": true
-      },
-      {
-        "id": 90,
-        "is_correct": true
-      },
-      {
-        "id": 70,
-        "is_correct": true
-      },
-      {
-        "id": 40,
-        "is_correct": true
-      },
-      {
-        "id": 91,
-        "is_correct": true
-      },
-      {
-        "id": 43,
-        "is_correct": true
-      },
-      {
-        "id": 31,
-        "is_correct": true
-      },
-      {
-        "id": 11,
-        "is_correct": true
-      },
-      {
-        "id": 62,
-        "is_correct": false
-      },
-      {
-        "id": 66,
-        "is_correct": true
-      },
-      {
-        "id": 80,
-        "is_correct": true
-      },
-      {
-        "id": 52,
-        "is_correct": true
-      },
-      {
-        "id": 54,
-        "is_correct": true
-      },
-      {
-        "id": 78,
-        "is_correct": true
-      },
-      {
-        "id": 81,
-        "is_correct": true
-      },
-      {
-        "id": 60,
-        "is_correct": true
-      },
-      {
-        "id": 61,
-        "is_correct": true
-      },
-      {
-        "id": 82,
-        "is_correct": true
-      },
-      {
-        "id": 79,
-        "is_correct": false
-      },
-      {
-        "id": 42,
-        "is_correct": false
-      },
-      {
-        "id": 88,
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1790870347883",
-    "date": "22:59:07 1/10/2026",
-    "timestamp": "2026-10-01T15:59:07.885Z",
-    "mode": "Làm Lại Câu Sai",
-    "score": "3/3",
-    "score_count": 3,
-    "total_count": 3,
-    "percent": 100,
-    "duration": "00:00",
-    "failed_question_ids": [],
-    "questions_attempted": [
-      {
-        "id": 37,
-        "is_correct": true
-      },
-      {
-        "id": 52,
-        "is_correct": true
-      },
-      {
-        "id": 53,
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1790867819292",
-    "date": "22:16:59 1/10/2026",
-    "timestamp": "2026-10-01T15:16:59.292Z",
-    "mode": "Làm Lại Câu Sai",
-    "score": "4/7",
-    "score_count": 4,
-    "total_count": 7,
-    "percent": 57,
-    "duration": "00:00",
-    "failed_question_ids": [
-      37,
-      52,
-      53
-    ],
-    "questions_attempted": [
-      {
-        "id": 27,
-        "is_correct": true
-      },
-      {
-        "id": 32,
-        "is_correct": true
-      },
-      {
-        "id": 37,
-        "is_correct": false
-      },
-      {
-        "id": 44,
-        "is_correct": true
-      },
-      {
-        "id": 51,
-        "is_correct": true
-      },
-      {
-        "id": 52,
-        "is_correct": false
-      },
-      {
-        "id": 53,
-        "is_correct": false
-      }
-    ]
-  },
-  {
-    "id": "exam_1790865991852",
-    "date": "21:46:31 1/10/2026",
-    "timestamp": "2026-10-01T14:46:31.856Z",
-    "mode": "Thi Thử (1 Chiều)",
-    "score": "17/20",
-    "score_count": 17,
-    "total_count": 20,
+    "id": "exam_1791387238965",
+    "date": "22:33:58 7/10/2026",
+    "timestamp": "2026-10-07T15:33:58.970Z",
+    "mode": "Học Tập",
+    "score": "28/33",
+    "score_count": 28,
+    "total_count": 33,
     "percent": 85,
-    "duration": "15:52",
+    "duration": "00:00",
     "failed_question_ids": [
-      37,
-      44,
-      32
+      11,
+      2,
+      16,
+      19,
+      23
     ],
     "questions_attempted": [
       {
-        "id": 37,
+        "id": 8,
+        "user_answer": "B. Chế độ hoạt động kép (Dual-Mode) sử dụng một bit trạng thái (Mode bit) trên phần cứng, với giá trị 0 đại diện cho Kernel Mode và 1 đại diện cho User Mode. | C. Ngắt phần mềm hay còn gọi là Trap/Exception được sinh ra bởi các sự kiện bên trong như lỗi thực thi (chia cho 0) hoặc gọi hệ thống (System Call).",
+        "is_correct": true
+      },
+      {
+        "id": 11,
+        "user_answer": "Mô hình Vùng nhớ chia sẻ ban đầu cần sự can thiệp của hệ điều hành để thiết lập vùng nhớ chung, nhưng sau đó việc đọc/ghi diễn ra trực tiếp qua các lệnh gán bộ nhớ thông thường mà không cần gọi hệ thống trong mỗi lần truyền.",
         "is_correct": false
       },
       {
-        "id": 7,
-        "is_correct": true
-      },
-      {
-        "id": 27,
-        "is_correct": true
-      },
-      {
-        "id": 44,
+        "id": 2,
+        "user_answer": "A. Mô hình Vùng nhớ chia sẻ không đòi hỏi lập trình viên phải sử dụng bất kỳ cơ chế đồng bộ hóa nào (như Semaphore hay Mutex) vì hệ điều hành tự động kiểm soát xung đột dữ liệu. | C. Mô hình Truyền thông điệp (Message Passing) rất thích hợp cho các hệ thống phân tán (Distributed systems) vì việc truyền tin qua mạng dễ cài đặt hơn so với việc chia sẻ vùng nhớ vật lý giữa các máy khác nhau.",
         "is_correct": false
       },
       {
-        "id": 31,
+        "id": 17,
+        "user_answer": "Thuật toán Shortest Remaining Time First (SRTF) là phiên bản thụ quyền (preemptive) của thuật toán SJF, có khả năng tối ưu hóa thời gian chờ trung bình.",
         "is_correct": true
       },
       {
-        "id": 47,
+        "id": 26,
+        "user_answer": "A. Các lệnh thay đổi giá trị của thanh ghi Base và Limit là các lệnh đặc quyền (Privileged instructions), chỉ được thực thi ở Kernel Mode. | C. Điều kiện kiểm tra phần cứng hợp lệ cho mỗi địa chỉ truy cập là: Base <= Địa chỉ < Base + Limit.",
         "is_correct": true
       },
       {
-        "id": 43,
+        "id": 16,
+        "user_answer": "B. Loại trừ tương hỗ (Mutual Exclusion): Nếu một tiến trình đang thực thi trong đoạn găng của nó, không có tiến trình nào khác được phép thực thi trong đoạn găng đó. | C. Tiến triển (Progress): Nếu không có tiến trình nào đang ở trong đoạn găng và một số tiến trình muốn vào, thì chỉ những tiến trình không nằm trong đoạn code ngoài mới tham gia quyết định tiến trình nào được vào tiếp. | D. Chờ đợi có giới hạn (Bounded Waiting): Hệ thống phải đảm bảo thời gian chờ đợi của mọi tiến trình trong đoạn găng là bằng nhau tuyệt đối.",
+        "is_correct": false
+      },
+      {
+        "id": 5,
+        "user_answer": "Hệ điều hành sử dụng cặp thanh ghi Base và Limit kết hợp với điều kiện phần cứng bắt buộc Base <= Địa chỉ < Base + Limit để kiểm tra mọi truy cập bộ nhớ của User Mode.",
         "is_correct": true
       },
       {
-        "id": 30,
+        "id": 29,
+        "user_answer": "Chỉ có một dòng duy nhất: Ready_Queue",
         "is_correct": true
       },
       {
         "id": 21,
+        "user_answer": "1. Chương trình người dùng thực thi lệnh gọi hệ thống -> 2. Chuyển ngữ cảnh sang chế độ Kernel mode -> 3. Kernel xử lý yêu cầu và điều khiển thiết bị I/O -> 4. Trở về chế độ User mode và trả kết quả.",
+        "is_correct": true
+      },
+      {
+        "id": 33,
+        "user_answer": "A. Lệnh ps với tùy chọn -o cho phép người dùng tùy biến hiển thị các trường thông tin cụ thể của tiến trình như PPID (tiến trình cha) và PID (tiến trình con). | D. Lệnh pstree hiển thị các tiến trình đang chạy trong hệ thống dưới dạng cấu trúc cây phân cấp (Process Tree) thể hiện rõ quan hệ tiến trình cha - con.",
         "is_correct": true
       },
       {
         "id": 32,
-        "is_correct": false
-      },
-      {
-        "id": 23,
-        "is_correct": true
-      },
-      {
-        "id": 22,
-        "is_correct": true
-      },
-      {
-        "id": 50,
-        "is_correct": true
-      },
-      {
-        "id": 13,
-        "is_correct": true
-      },
-      {
-        "id": 19,
-        "is_correct": true
-      },
-      {
-        "id": 14,
-        "is_correct": true
-      },
-      {
-        "id": 3,
-        "is_correct": true
-      },
-      {
-        "id": 36,
-        "is_correct": true
-      },
-      {
-        "id": 16,
-        "is_correct": true
-      },
-      {
-        "id": 40,
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1790844283527",
-    "date": "15:44:43 1/10/2026",
-    "timestamp": "2026-10-01T08:44:43.539Z",
-    "mode": "Thi Thử (1 Chiều)",
-    "score": "0/1",
-    "score_count": 0,
-    "total_count": 1,
-    "percent": 0,
-    "duration": "00:11",
-    "failed_question_ids": [
-      27
-    ],
-    "questions_attempted": [
-      {
-        "id": 27,
-        "is_correct": false
-      }
-    ]
-  },
-  {
-    "id": "exam_1790842667328",
-    "date": "15:17:47 1/10/2026",
-    "timestamp": "2026-10-01T08:17:47.328Z",
-    "mode": "Làm Lại Câu Sai",
-    "score": "2/2",
-    "score_count": 2,
-    "total_count": 2,
-    "percent": 100,
-    "duration": "00:00",
-    "failed_question_ids": [],
-    "questions_attempted": [
-      {
-        "id": 33,
-        "is_correct": true
-      },
-      {
-        "id": 41,
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1790842432535",
-    "date": "15:13:52 1/10/2026",
-    "timestamp": "2026-10-01T08:13:52.535Z",
-    "mode": "Thi Thử (1 Chiều)",
-    "score": "2/3",
-    "score_count": 2,
-    "total_count": 3,
-    "percent": 67,
-    "duration": "00:36",
-    "failed_question_ids": [
-      33
-    ],
-    "questions_attempted": [
-      {
-        "id": 33,
-        "is_correct": false
-      },
-      {
-        "id": 8,
-        "is_correct": true
-      },
-      {
-        "id": 31,
-        "is_correct": true
-      }
-    ]
-  },
-  {
-    "id": "exam_1790842304223",
-    "date": "15:11:44 1/10/2026",
-    "timestamp": "2026-10-01T08:11:44.235Z",
-    "mode": "Thi Thử (1 Chiều)",
-    "score": "2/2",
-    "score_count": 2,
-    "total_count": 2,
-    "percent": 100,
-    "duration": "01:13",
-    "failed_question_ids": [],
-    "questions_attempted": [
-      {
-        "id": 27,
+        "user_answer": "Ống dẫn (|) chuyển trực tiếp luồng đầu ra tiêu chuẩn (stdout) của lệnh phía trước thành luồng đầu vào tiêu chuẩn (stdin) của lệnh phía sau, và dấu & ở cuối câu lệnh dùng để chạy tiến trình dưới nền.",
         "is_correct": true
       },
       {
         "id": 20,
+        "user_answer": "Shell đóng vai trò là giao diện trung gian nhận lệnh từ người dùng, phân tích và gọi các dịch vụ của Kernel để điều khiển phần cứng.",
         "is_correct": true
+      },
+      {
+        "id": 30,
+        "user_answer": "kill -9 <PID> (hoặc kill -SIGKILL <PID>)",
+        "is_correct": true
+      },
+      {
+        "id": 25,
+        "user_answer": "Xử lý theo lô đơn chương (Single-stream batch) -> Xử lý theo lô đa chương (Multiprogrammed batch) -> Hệ thống chia sẻ thời gian (Time-sharing) -> Hệ thống phân tán (Distributed systems)",
+        "is_correct": true
+      },
+      {
+        "id": 1,
+        "user_answer": "Current State: 1",
+        "is_correct": true
+      },
+      {
+        "id": 19,
+        "user_answer": "Điều kiện Loại trừ tương hỗ (Mutual Exclusion) cho phép tối đa hai tiến trình cùng thực thi trong đoạn găng tại cùng một thời điểm.",
+        "is_correct": false
+      },
+      {
+        "id": 24,
+        "user_answer": "Vùng nhớ chia sẻ có tốc độ truyền tải dữ liệu nhanh hơn vì sau khi thiết lập, việc trao đổi không cần sự can thiệp của hệ điều hành, trong khi Truyền thông điệp thích hợp hơn cho việc trao đổi các dữ liệu nhỏ và an toàn trên hệ thống phân tán.",
+        "is_correct": true
+      },
+      {
+        "id": 28,
+        "user_answer": "A. Truyền qua các thanh ghi CPU (Registers). | D. Truyền qua một khối nhớ hoặc bảng nhớ (Block or Table) mà địa chỉ của khối nhớ được lưu trong thanh ghi.",
+        "is_correct": true
+      },
+      {
+        "id": 6,
+        "user_answer": "Tiến trình và Chương trình là một khái niệm, trong đó chương trình là thể hiện động nằm trong RAM còn tiến trình là thể hiện thụ động trên đĩa.",
+        "is_correct": true
+      },
+      {
+        "id": 23,
+        "user_answer": "Mô hình vùng nhớ chia sẻ bắt buộc phải sử dụng cơ chế hàng đợi thông điệp (Message Queue) ngầm bên trong Kernel để đảm bảo an toàn dữ liệu.",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "user_answer": "PCB là một cấu trúc dữ liệu của hệ điều hành dùng để lưu trữ toàn bộ thông tin trạng thái của tiến trình (như PID, Program Counter, thanh ghi CPU, thông tin bộ nhớ), và 4 sự kiện chính khởi tạo tiến trình gồm: Khởi động hệ thống, Lệnh gọi hệ thống từ tiến trình thực thi, Yêu cầu từ người dùng, và Khởi động công việc xử lý lô (Batch job).",
+        "is_correct": true
+      },
+      {
+        "id": 22,
+        "user_answer": "A. Hàm wait() (hay P/down) trên Semaphore có thể làm cho tiến trình chuyển sang trạng thái chờ (blocked) nếu giá trị của Semaphore sau khi giảm nhỏ hơn 0. | B. Giá trị tuyệt đối của một Semaphore âm (|S|) biểu thị chính xác số lượng tiến trình hiện đang bị treo (blocked) trong hàng đợi của Semaphore đó.",
+        "is_correct": true
+      },
+      {
+        "id": 10,
+        "user_answer": "Shell",
+        "is_correct": true
+      },
+      {
+        "id": 14,
+        "user_answer": "Valid",
+        "is_correct": true
+      },
+      {
+        "id": 7,
+        "user_answer": "Tiến trình gọi hàm send() -> Kiểm tra dung lượng bộ đệm -> Nếu bộ đệm đầy (với chế độ blocking), tiến trình gửi bị block cho đến khi có chỗ trống -> Sao chép thông điệp vào hàng đợi/mailbox.",
+        "is_correct": true
+      },
+      {
+        "id": 15,
+        "user_answer": "Giá trị của biến semaphore S âm (|S|) biểu thị số lượng tiến trình đang bị khóa và nằm trong hàng đợi chờ của semaphore đó.",
+        "is_correct": true
+      },
+      {
+        "id": 13,
+        "user_answer": "Tiến trình phát sinh ngắt phần mềm (Trap/Exception) -> CPU chuyển Mode bit từ 1 sang 0 -> Bộ xử lý tra cứu bảng vector ngắt để gọi hàm xử lý của Kernel -> Hoàn thành tác vụ, chuyển Mode bit về lại 1 và trả quyền cho User Mode.",
+        "is_correct": true
+      },
+      {
+        "id": 9,
+        "user_answer": "Chương trình là thực thể thụ động chứa mã lệnh lưu trên đĩa, trong khi Tiến trình là thực thể động đang thực thi, bao gồm bộ đếm chương trình (PC), các thanh ghi và không gian nhớ trong RAM.",
+        "is_correct": true
+      },
+      {
+        "id": 18,
+        "user_answer": "Phát biểu ĐÚNG NHẤT là: Khối điều khiển tiến trình (PCB) lưu trữ toàn bộ thông tin định danh, trạng thái, bộ đếm chương trình PC, các thanh ghi CPU và thông tin quản lý bộ nhớ của tiến trình.",
+        "is_correct": true
+      },
+      {
+        "id": 12,
+        "user_answer": "Đoạn mã minh họa tính đóng gói và độc lập của module, cho phép quản lý tài nguyên riêng biệt mà không làm ảnh hưởng đến các thành phần khác trong hệ thống.",
+        "is_correct": true
+      },
+      {
+        "id": 27,
+        "user_answer": "Giá trị tuyệt đối của S (|S|) biểu thị chính xác số lượng tiến trình đang bị khóa (chờ) trong hàng đợi của semaphore đó.",
+        "is_correct": true
+      },
+      {
+        "id": 31,
+        "user_answer": "chmod 755 run_task.sh",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "user_answer": "Loại trừ tương hỗ (Mutual Exclusion), Tiến triển (Progress), Chờ đợi có giới hạn (Bounded Waiting), và Độc lập phần cứng (không giả định tốc độ hay số lượng CPU).",
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1791361009553",
+    "date": "15:16:49 7/10/2026",
+    "timestamp": "2026-10-07T08:16:49.558Z",
+    "mode": "Học Tập",
+    "score": "12/18",
+    "score_count": 12,
+    "total_count": 18,
+    "percent": 67,
+    "duration": "00:00",
+    "failed_question_ids": [
+      17,
+      2,
+      8,
+      5,
+      11,
+      16
+    ],
+    "questions_attempted": [
+      {
+        "id": 6,
+        "user_answer": "Tiến trình và Chương trình là một khái niệm, trong đó chương trình là thể hiện động nằm trong RAM còn tiến trình là thể hiện thụ động trên đĩa.",
+        "is_correct": true
+      },
+      {
+        "id": 1,
+        "user_answer": "Current State: 1",
+        "is_correct": true
+      },
+      {
+        "id": 10,
+        "user_answer": "Shell",
+        "is_correct": true
+      },
+      {
+        "id": 17,
+        "user_answer": "Thuật toán lập lịch theo độ ưu tiên (Priority Scheduling) hoàn toàn loại bỏ được hiện tượng đói tài nguyên (Starvation) mà không cần dùng kỹ thuật làm già (Aging).",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "user_answer": "PCB là một cấu trúc dữ liệu của hệ điều hành dùng để lưu trữ toàn bộ thông tin trạng thái của tiến trình (như PID, Program Counter, thanh ghi CPU, thông tin bộ nhớ), và 4 sự kiện chính khởi tạo tiến trình gồm: Khởi động hệ thống, Lệnh gọi hệ thống từ tiến trình thực thi, Yêu cầu từ người dùng, và Khởi động công việc xử lý lô (Batch job).",
+        "is_correct": true
+      },
+      {
+        "id": 13,
+        "user_answer": "Tiến trình phát sinh ngắt phần mềm (Trap/Exception) -> CPU chuyển Mode bit từ 1 sang 0 -> Bộ xử lý tra cứu bảng vector ngắt để gọi hàm xử lý của Kernel -> Hoàn thành tác vụ, chuyển Mode bit về lại 1 và trả quyền cho User Mode.",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "user_answer": "B. Mô hình Truyền thông điệp (Message Passing) rất thích hợp cho các hệ thống phân tán (Distributed systems) vì việc truyền tin qua mạng dễ cài đặt hơn so với việc chia sẻ vùng nhớ vật lý giữa các máy khác nhau. | C. Mô hình Vùng nhớ chia sẻ (Shared Memory) cho tốc độ trao đổi dữ liệu rất nhanh vì sau khi thiết lập vùng nhớ chung, các tiến trình trao đổi dữ liệu mà không cần sự can thiệp của hệ điều hành trong mỗi lần đọc/ghi. | D. Mô hình Vùng nhớ chia sẻ không đòi hỏi lập trình viên phải sử dụng bất kỳ cơ chế đồng bộ hóa nào (như Semaphore hay Mutex) vì hệ điều hành tự động kiểm soát xung đột dữ liệu.",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "user_answer": "B. Ngắt phần mềm hay còn gọi là Trap/Exception được sinh ra bởi các sự kiện bên trong như lỗi thực thi (chia cho 0) hoặc gọi hệ thống (System Call). | C. Cơ chế DMA (Direct Memory Access) yêu cầu CPU phải trực tiếp đọc từng byte dữ liệu từ thiết bị I/O rồi ghi vào bộ nhớ chính RAM nhằm đảm bảo an toàn. | D. Chế độ hoạt động kép (Dual-Mode) sử dụng một bit trạng thái (Mode bit) trên phần cứng, với giá trị 0 đại diện cho Kernel Mode và 1 đại diện cho User Mode.",
+        "is_correct": false
+      },
+      {
+        "id": 15,
+        "user_answer": "Giá trị của biến semaphore S âm (|S|) biểu thị số lượng tiến trình đang bị khóa và nằm trong hàng đợi chờ của semaphore đó.",
+        "is_correct": true
+      },
+      {
+        "id": 9,
+        "user_answer": "Chương trình là thực thể thụ động chứa mã lệnh lưu trên đĩa, trong khi Tiến trình là thực thể động đang thực thi, bao gồm bộ đếm chương trình (PC), các thanh ghi và không gian nhớ trong RAM.",
+        "is_correct": true
+      },
+      {
+        "id": 5,
+        "user_answer": "Bộ định thời (Timer) được cấu hình để cộng dồn giá trị sau mỗi chu kỳ lệnh và sẽ phát sinh ngắt khi vượt quá giới hạn nhằm bảo vệ bộ nhớ.",
+        "is_correct": false
+      },
+      {
+        "id": 14,
+        "user_answer": "Valid",
+        "is_correct": true
+      },
+      {
+        "id": 7,
+        "user_answer": "Tiến trình gọi hàm send() -> Kiểm tra dung lượng bộ đệm -> Nếu bộ đệm đầy (với chế độ blocking), tiến trình gửi bị block cho đến khi có chỗ trống -> Sao chép thông điệp vào hàng đợi/mailbox.",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "user_answer": "Loại trừ tương hỗ (Mutual Exclusion), Tiến triển (Progress), Chờ đợi có giới hạn (Bounded Waiting), và Độc lập phần cứng (không giả định tốc độ hay số lượng CPU).",
+        "is_correct": true
+      },
+      {
+        "id": 11,
+        "user_answer": "Mô hình Vùng nhớ chia sẻ ban đầu cần sự can thiệp của hệ điều hành để thiết lập vùng nhớ chung, nhưng sau đó việc đọc/ghi diễn ra trực tiếp qua các lệnh gán bộ nhớ thông thường mà không cần gọi hệ thống trong mỗi lần truyền.",
+        "is_correct": false
+      },
+      {
+        "id": 18,
+        "user_answer": "Phát biểu ĐÚNG NHẤT là: Khối điều khiển tiến trình (PCB) lưu trữ toàn bộ thông tin định danh, trạng thái, bộ đếm chương trình PC, các thanh ghi CPU và thông tin quản lý bộ nhớ của tiến trình.",
+        "is_correct": true
+      },
+      {
+        "id": 12,
+        "user_answer": "Đoạn mã minh họa tính đóng gói và độc lập của module, cho phép quản lý tài nguyên riêng biệt mà không làm ảnh hưởng đến các thành phần khác trong hệ thống.",
+        "is_correct": true
+      },
+      {
+        "id": 16,
+        "user_answer": "A. Tiến triển (Progress): Nếu không có tiến trình nào đang ở trong đoạn găng và một số tiến trình muốn vào, thì chỉ những tiến trình không nằm trong đoạn code ngoài mới tham gia quyết định tiến trình nào được vào tiếp. | B. Loại trừ tương hỗ (Mutual Exclusion): Nếu một tiến trình đang thực thi trong đoạn găng của nó, không có tiến trình nào khác được phép thực thi trong đoạn găng đó. | C. Độc lập phần cứng (Hardware Independence): Giải pháp đoạn găng phải giả định tốc độ của các CPU và số lượng CPU trong hệ thống phải luôn đồng nhất. | D. Chờ đợi có giới hạn (Bounded Waiting): Hệ thống phải đảm bảo thời gian chờ đợi của mọi tiến trình trong đoạn găng là bằng nhau tuyệt đối.",
+        "is_correct": false
       }
     ]
   }
